@@ -1,0 +1,4 @@
+# ignore everything in /data/csv
+*
+# except this file
+!/.gitignore
