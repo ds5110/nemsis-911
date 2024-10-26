@@ -1,8 +1,9 @@
-name: 911-NEMSIS
+name: dsProjEnv
 channels:
+  - conda-forge
   - defaults
 dependencies:
-  - python=3.11
-  - pandas=2.0.3
-  - seaborn=0.11.1
-prefix: /home/aaron/miniconda3/envs/911-NEMSIS
+  - scikit-learn
+  - seaborn
+  - matplotlib
+  - make

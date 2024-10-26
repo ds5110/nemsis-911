@@ -47,6 +47,12 @@ environment:
 	conda env create -n dsProjEnv -f environment.yml
 # conda activate dsProjEnv
 
+prelim-eda:
+	python src/data/column_info.py
+
+eda-charts:
+	python src/data/eda_charts.py
+
 ./reports/chi-square.txt: ./data/processed/events_renamed.pickle
 	python ./src/data/analysis.py
 
