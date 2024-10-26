@@ -12,7 +12,7 @@ Links for our EDA can be found below:
 - [Additional EDA with Charts](./EDA.md)
 
 ### EDA - Makefile Instructions
-1) Due to file size concerns, all data has been gitignored. Follow Aaron Fihn's instructions for downloading the data, then run his **make** command to prepare the *events_renamed.pickle* file
+1) Due to file size concerns, all data has been gitignored. Follow [Aaron Fihn's instructions](./Makefile_overview.md) for downloading the data, then run his **make** command to prepare the *events_renamed.pickle* file
 1) **make environment** can be run to create a conda environment named dsProjEnv. This is separate from Aaron's file due to older dependency issues, but his original environment.yml file was renamed to *environment_Aaron-Fihn.yml*. Our current file is named *environment.yml*
 1) **conda activate dsProjEnv** to activate our conda environment
 1) **make prelim-eda** can be run to generate the file *"reports/preliminary_eda.txt"*, which has information on the size of the data table, and columns available.
