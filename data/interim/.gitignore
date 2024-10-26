@@ -1,0 +1,4 @@
+# ignore everything in /data/interim
+*
+# except this file
+!/.gitignore

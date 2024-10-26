@@ -1,0 +1,9 @@
+name: dsProjEnv
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - scikit-learn
+  - seaborn
+  - matplotlib
+  - make
