@@ -44,8 +44,8 @@ unzipped_csvs = ./data/interim/ComputedElements.txt \
 build: ./reports/chi-square.txt
 
 environment:
-	conda env create -n dsProjEnv -f environment.yml
-# conda activate dsProjEnv
+	conda env create -n project-duggani -f environment.yml
+# conda activate project-duggani
 
 prelim-eda:
 	python src/data/column_info.py

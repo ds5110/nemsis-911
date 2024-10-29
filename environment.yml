@@ -1,4 +1,4 @@
-name: dsProjEnv
+name: project-duggani
 channels:
   - conda-forge
   - defaults
