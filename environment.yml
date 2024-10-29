@@ -1,0 +1,9 @@
+name: project-duggani
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - scikit-learn
+  - seaborn
+  - matplotlib
+  - make
