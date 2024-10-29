@@ -50,6 +50,9 @@ environment:
 prelim-eda:
 	python src/data/column_info.py
 
+prelim-eda_sample: 
+	python src/data/column_info_sample.py
+
 eda-charts:
 	python src/data/eda_charts.py
 

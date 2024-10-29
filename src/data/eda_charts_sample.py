@@ -23,13 +23,10 @@ def main():
 
     # hue-mapped histogram of age by urbanicity
     plt.figure(figsize=(7, 5))
-    sns.histplot(data=df, x="ageinyear", hue="Urbanicity", multiple="dodge", element="step", stat="density",
-                 common_norm=False, binwidth=5, alpha=0.2)
+    sns.histplot(data=df, x="ageinyear", hue="Urbanicity", element="step", stat="density", common_norm=False, binwidth=5, alpha=0.2)
     plt.title("Patient Age Distribution by Urbanicity (Bin Width = 5 years)")
     plt.xlabel("Age (years)")
     plt.ylabel("Density")
-    handles, labels = plt.gca().get_legend_handles_labels()
-    plt.legend(handles, labels, title="Urbanicity")
     plt.savefig("figs/fig_samples/age-histogram-by-urbanicity_sample.png")
     plt.show()
 

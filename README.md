@@ -12,8 +12,12 @@ Links for our EDA can be found below:
 - [Additional EDA with Charts](./EDA.md)
 
 ### EDA - Makefile Instructions
-1) Due to file size concerns, all data has been gitignored. Follow [Aaron Fihn's instructions](./Makefile_overview.md) for downloading the data, then run his **make** command to prepare the *events_renamed.pickle* file
-1) **make environment** can be run to create a conda environment named dsProjEnv. This is separate from Aaron's file due to older dependency issues, but his original environment.yml file was renamed to *environment_Aaron-Fihn.yml*. Our current file is named *environment.yml*
-1) **conda activate dsProjEnv** to activate our conda environment
-1) **make prelim-eda** can be run to generate the file *"reports/preliminary_eda.txt"*, which has information on the size of the data table, and columns available.
-1) **make eda-charts** can be run to generate three plots in the *figs/* directory, and display them. These plots show an initial investigation into the patient age by urbanicity.
+1) **make environment** can be run to create a conda environment named `project-duggani`. This is separate from Aaron's file due to older dependency issues, but his original environment.yml file was renamed to *environment_Aaron-Fihn.yml*. Our current file is named *environment.yml*
+1) **conda activate project-duggani** to activate our conda environment
+1) **make prelim-eda_sample** can be run to generate the file *"reports/preliminary_eda_sample.txt"*, which has information on the size of the data table, and columns available. *Note: see reports/preliminary_eda.txt for the file that was generated from the full dataset*
+1) **make eda-charts_sample** can be run to make the directory *figs/fig_samples* and generate three plots. These plots show an initial investigation into the patient age by urbanicity. *Note: see the figs/ directory for the charts that were generated from the full dataset*
+
+**Note Re: Data**:
+* For easier replication of our initial EDA by the TA's, we have a small CSV file with a subset of the data in *data_sample/events_renamed_sample.csv*
+* *Due to file size concerns, all other data has been gitignored. If you want to work with the full dataset, follow [Aaron Fihn's instructions](./Makefile_overview.md) for downloading the data, then run his **make** command to prepare the events_renamed.pickle file*
+
