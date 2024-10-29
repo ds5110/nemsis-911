@@ -1,5 +1,17 @@
 ### Project Repo for Duggan, Jordan, & Darby
 
+***Delete prior to submit
+#### Summary of changes made
+created create_sample_from_pickle.py to create a csv sample file containing 2 fields only (urbanicity & ageinyear)<br>
+saved the sample dataset to new dir "data_sample" in file "events_renamed_sample.csv"<br>
+tested new data by copying original plots and modifying source.  Confirmed functionality and shape of samples is close to original data when plotted
+saved the test plots in new subdir of figs name "fig_samples"
+modified Makefile so that dir creation is a dependency and sample plots can be created from project root by running new command "make eda-charts_sample" 
+copied existing plotting script to "eda_charts_sample.py", left originals unchanged
+added new visual details to sample plot "patient-counts-by-urbanicity_Sample", this could be used  
+tried to copy style of "age_histogram_by_urbanicity" in "age_histogram_by_urbanicity_sample" however legend is not showing detail, don't use this one   
+End of Delete***
+
 For information about our proposed project, see [Proposed Project Information](./project.md).
 
 Referenced files from Aaron Fihn's initial project include:
