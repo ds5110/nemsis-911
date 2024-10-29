@@ -5,7 +5,9 @@ To start investigating some variables in the dataset, we wanted to gain a sense 
 
 ![Bar Plot of Patient Counts by Urbanicity](./figs/patient-counts-by-urbanicity.png)
 
-We can see that the vast majority of the dataset is for patients in urban zones. This should be kept in mind for future analyses. 
+We can see that the vast majority of the dataset is for patients in urban zones. This should be kept in mind for future analyses. We can also start to get a sense for the ages of patients within a regional type:
+
+~[Bar Plot of Patients w/ Age Sub-Plot](./figs/fig_samples/patient-counts-by-urbanicity_sample.png)
 
 ## Distribution of Age
 
