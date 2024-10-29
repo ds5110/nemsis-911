@@ -13,7 +13,10 @@ def main():
     # replace null values for age in year, then convert to numeric (float for None types)
     df['ageinyear'] = df['ageinyear'].replace('. ', None)
     df['ageinyear'] = df['ageinyear'].astype(float)
-
+    df['age_group'] = pd.cut(df['ageinyear'], 
+                        bins=[0, 18, 35, 50, 65, 75, 100],  
+                        labels=['0-18', '19-35', '36-50', '51-65', '65-75', '75+'])
+    
     # age distribution across all patients
     g = sns.histplot(data = df, x = "ageinyear", binwidth = 5)
     plt.title("Patient Age Distribution (Bin Width = 5 Years)")
@@ -30,6 +33,18 @@ def main():
     sns.countplot(x = df['Urbanicity'], order = ['U', 'S', 'R', 'W'])
     plt.title("Count of Patients by Urbanicity")
     plt.savefig("figs/patient-counts-by-urbanicity.png")
+    plt.show()
+
+    # bar plot with count of patient #s by urbanicity and age
+    plt.figure(figsize=(7, 5))
+    sns.countplot(x="Urbanicity", hue="age_group", data=df, order=["U", "S", "R", "W"], palette="viridis", 
+                  hue_order=['0-18', '19-35', '36-50', '51-65', '65-75', '75+']) #age groups
+    plt.xticks(range(4), ['Urban', 'Suburban', 'Rural', 'Wilderness'], rotation=0)
+    plt.title("Count of Patients by Urbanicity and Age")
+    plt.xticks(rotation=0)
+    plt.legend(title="Age Groups", bbox_to_anchor=(1.05, 1), loc='upper left')
+    plt.tight_layout()
+    plt.savefig("figs/patient-counts-by-urbanicity-age.png", bbox_inches='tight')
     plt.show()
 
 if __name__ == "__main__":
