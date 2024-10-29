@@ -1,8 +1,8 @@
 ### Project Repo for Duggan, Jordan, & Darby
 
 ***Delete prior to submit
-#### Summary of changes made
-created create_sample_from_pickle.py to create a csv sample file containing 2 fields only (urbanicity & ageinyear)<br>
+Summary of changes made
+created "create_sample_from_pickle.py" to create a csv sample file containing 2 fields only (urbanicity & ageinyear)<br>
 saved the sample dataset to new dir "data_sample" in file "events_renamed_sample.csv"<br>
 tested new data by copying original plots and modifying source.  Confirmed functionality and shape of samples is close to original data when plotted
 saved the test plots in new subdir of figs name "fig_samples"
