@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def main():
-    # read file from Aaron's project
+    # read file from Aaron's project (all available data)
     data_fp = Path(__file__).parent.parent.parent / 'data' / 'processed' / 'events_renamed.pickle'
     df = pd.read_pickle(data_fp)
 

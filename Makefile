@@ -53,6 +53,13 @@ prelim-eda:
 eda-charts:
 	python src/data/eda_charts.py
 
+create-dirs:
+	mkdir -p figs/fig_samples
+	mkdir -p data_sample
+
+eda-charts_sample: create-dirs
+	python src/data/eda_charts_sample.py
+   
 ./reports/chi-square.txt: ./data/processed/events_renamed.pickle
 	python ./src/data/analysis.py
 
