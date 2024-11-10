@@ -1,0 +1,10 @@
+'PcrKey'~|~'USCensusRegion'~|~'USCensusDivision'~|~'NasemsoRegion'~|~'Urbanicity'~|~'ageinyear'~|~'EMSDispatchCenterTimeSec'~|~'EMSChuteTimeMin'~|~'EMSSystemResponseTimeMin'~|~'EMSSceneResponseTimeMin'~|~'EMSSceneTimeMin'~|~'EMSSceneToPatientTimeMin'~|~'EMSTransportTimeMin'~|~'EMSTotalCallTimeMin'
+26669835 ~|~Northeast~|~New England       ~|~East          ~|~Urban     ~|~63 ~|~0 ~|~0 ~|~3 ~|~3 ~|~9 ~|~0 ~|~4 ~|~21
+31570619 ~|~West     ~|~Mountain          ~|~Western Plains~|~Urban     ~|~26 ~|~521 ~|~1.0333333333 ~|~20.433333333 ~|~19.4 ~|~13.25 ~|~0.25 ~|~20 ~|~66.683333333
+45315246 ~|~West     ~|~Pacific           ~|~West          ~|~Urban     ~|~55 ~|~. ~|~. ~|~. ~|~. ~|~. ~|~. ~|~. ~|~.
+45457991 ~|~Northeast~|~Middle Atlantic   ~|~East          ~|~Urban     ~|~61 ~|~27 ~|~0.2166666667 ~|~6.1166666667 ~|~5.9 ~|~15.45 ~|~3.7 ~|~7.25 ~|~65.816666667
+64915249 ~|~Midwest  ~|~West North Central~|~Western Plains~|~Urban     ~|~60 ~|~. ~|~. ~|~. ~|~. ~|~. ~|~. ~|~. ~|~.
+80151477 ~|~Northeast~|~New England       ~|~East          ~|~Urban     ~|~87 ~|~. ~|~. ~|~. ~|~. ~|~. ~|~. ~|~. ~|~110
+100167527 ~|~Midwest  ~|~West North Central~|~Western Plains~|~          ~|~. ~|~0 ~|~7 ~|~11 ~|~4 ~|~. ~|~. ~|~. ~|~60
+105483868 ~|~Midwest  ~|~West North Central~|~Great Lakes   ~|~Urban     ~|~42 ~|~. ~|~3 ~|~5 ~|~2 ~|~20 ~|~2 ~|~8 ~|~43
+107118510 ~|~South    ~|~West South Central~|~South         ~|~Urban     ~|~58 ~|~0 ~|~3 ~|~8 ~|~5 ~|~. ~|~1 ~|~. ~|~26
