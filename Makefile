@@ -82,6 +82,28 @@ eda-charts_sample: create-dirs
 ./data/csv/ComputedElements.csv: $(unzipped_csvs)
 	sed 's/~|~/,/g' ./data/interim/ComputedElements.txt > ./data/csv/ComputedElements.csv
 
+# --------------- adding additional csv files taj 11/10 ---------------------------- #
+./data/csv/FACTPCRMEDICATION.csv: $(unzipped_csvs)
+	sed 's/~|~/,/g' ./data/interim/FACTPCRMEDICATION.txt > ./data/csv/FACTPCRMEDICATION.csv
+
+./data/csv/PCRPATIENTRACEGROUP.csv: $(unzipped_csvs)
+	sed 's/~|~/,/g' ./data/interim/PCRPATIENTRACEGROUP.txt > ./data/csv/PCRPATIENTRACEGROUP.csv
+
+./data/csv/FACTPCRARRESTWITNESS.csv: $(unzipped_csvs)
+	sed 's/~|~/,/g' ./data/interim/FACTPCRARRESTWITNESS.txt > ./data/csv/FACTPCRARRESTWITNESS.csv
+
+./data/csv/FACTPCRARRESTROSC.csv: $(unzipped_csvs)
+	sed 's/~|~/,/g' ./data/interim/FACTPCRARRESTROSC.txt > ./data/csv/FACTPCRARRESTROSC.csv
+
+# COMMAND TO RERUN make_dataset & rename_columns after manually added csvs
+# TODO: revise later to integrate into main workflow
+remake_pickles: 
+	python ./src/data/make_dataset.py && python ./src/data/rename_columns.py
+
+
+
+# ---------------------------------------------------------------------------------- #
+
 $(unzipped_csvs) &: ./data/repaired/ASCII\ 2022_repaired.zip
 	unzip -jo "./data/repaired/ASCII 2022_repaired.zip" -d ./data/interim
 	touch -c ./data/interim/*

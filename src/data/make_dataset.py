@@ -36,6 +36,22 @@ def main():
     comp_elements_df = computed_elements()
     events_df = events_df.merge(comp_elements_df, on='PcrKey', suffixes=(None, '_y'))
 
+    # ---------------------- TJ 11/10 - add in new csvs to join ---------------------------- #
+
+    arrest_rosc_df = fact_pcr_arrest_rosc()
+    events_df = events_df.merge(arrest_rosc_df, on='PcrKey', suffixes=(None, '_y'))
+
+    pcr_arrest_witness = fact_pcr_arrest_witness()
+    events_df = events_df.merge(pcr_arrest_witness, on='PcrKey', suffixes=(None, '_y'))
+
+    medications_df = fact_pcr_medication() 
+    events_df = events_df.merge(medications_df, on='PcrKey', suffixes=(None, '_y'))
+
+    race_df = pcr_patient_race_group()
+    events_df = events_df.merge(race_df, on='PcrKey', suffixes=(None, '_y'))
+
+    # -------------------------------------------------------------------------------------- #
+
     events_df = events_df.convert_dtypes()
     events_df = events_df.replace(to_replace=[7701001, 7701003, 7701005], value=pd.NA)  # replace NEMSIS NOT values
     logger.debug("Save events.pickle")
@@ -236,6 +252,132 @@ def computed_elements() -> pd.DataFrame:
 
     logger.debug("exiting computed_elements()")
     return df
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def fact_pcr_arrest_rosc() -> pd.DataFrame:
+    """
+    Read relevent columns from FACTPCRARRESTROSC.csv into a DataFrame.
+
+    Relevant columns are PcrKey, eArrest_12
+    """
+    logger.debug("entering fact_pcr_arrest_rosc()")
+    fp = Path(__file__).parent.parent.parent / 'data' / 'csv' / 'FACTPCRARRESTROSC.csv'
+    usecols = ["'PcrKey'", "'eArrest_12'"]
+    df = pd.read_csv(fp, usecols = usecols)
+
+    # Remove quotes from column names
+    mapper = {quoted_col: _unquote_column_names(quoted_col) for quoted_col in usecols}
+    df.rename(mapper=mapper, axis='columns', inplace=True)
+
+    #TODO: unclear if NAs need to be removed like Aaron did in computed_elements()
+
+    logger.debug("exiting fact_pcr_arrest_rosc()")
+    return df
+
+
+def fact_pcr_arrest_witness() -> pd.DataFrame:
+    """
+    Read relevent columns from FACTPCRARRESTWITNESS.csv into a DataFrame.
+
+    Relevant columns are 'PcrKey', 'eArrest_04'
+    """
+    logger.debug("entering fact_pcr_arrest_witness()")
+    fp = Path(__file__).parent.parent.parent / 'data' / 'csv' / 'FACTPCRARRESTWITNESS.csv'
+    usecols = ["'PcrKey'", "'eArrest_04'"]
+    df = pd.read_csv(fp, usecols = usecols)
+
+    # Remove quotes from column names
+    mapper = {quoted_col: _unquote_column_names(quoted_col) for quoted_col in usecols}
+    df.rename(mapper=mapper, axis='columns', inplace=True)
+
+    #TODO: unclear if NAs need to be removed like Aaron did in computed_elements()
+
+    logger.debug("exiting fact_pcr_arrest_witness()")
+    return df
+
+
+def fact_pcr_medication() -> pd.DataFrame:
+    """
+    Read relevant columns from FACTPCRMEDICATION.csv into a DataFrame.
+
+    Relevant columns are 'PcrKey', 'eMedications_03', 'eMedications_03Descr', 
+                        'eMedications_05', 'eMedications_06'
+    """
+    logger.debug("entering fact_pcr_medication()")
+    fp = Path(__file__).parent.parent.parent / 'data' / 'csv' / 'FACTPCRMEDICATION.csv'
+    usecols = ["'PcrKey'", "'eMedications_03'", "'eMedications_03Descr'", 
+        "'eMedications_05'", "'eMedications_06'"
+    ]
+    df = pd.read_csv(fp, usecols = usecols)
+
+    # Remove quotes from column names
+    mapper = {quoted_col: _unquote_column_names(quoted_col) for quoted_col in usecols}
+    df.rename(mapper=mapper, axis='columns', inplace=True)
+
+    #TODO: unclear if NAs need to be removed like Aaron did in computed_elements()
+
+    logger.debug("exiting fact_pcr_medication()")
+    return df
+
+
+def pcr_patient_race_group() -> pd.DataFrame:
+    """
+    Read relevent columns from PCRPATIENTRACEGROUP.csv into a DataFrame.
+
+    Relevant columns are 'PcrKey', 'ePatient_14'
+    """
+    logger.debug("entering pcr_patient_race_group()")
+    fp = Path(__file__).parent.parent.parent / 'data' / 'csv' / 'PCRPATIENTRACEGROUP.csv'
+    usecols = ["'PcrKey'", "'ePatient_14'"]
+    df = pd.read_csv(fp, usecols = usecols)
+
+    # Remove quotes from column names
+    mapper = {quoted_col: _unquote_column_names(quoted_col) for quoted_col in usecols}
+    df.rename(mapper=mapper, axis='columns', inplace=True)
+
+    #TODO: unclear if NAs need to be removed like Aaron did in computed_elements()
+
+    logger.debug("exiting pcr_patient_race_group()")
+    return df
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def _get_interim_path() -> Path:
