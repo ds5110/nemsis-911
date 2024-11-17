@@ -3,12 +3,11 @@ import sqlite3
 
 def create_database(db_path):
     try:
-        # Connect to SQLite (creates the file if it does not exist)
+        # Connect to SQLite
         conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
 
         # Create the database with necessary tables
-        # The table schema will depend on your data requirements
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS Pub_PCRevents (
                 PcrKey TEXT PRIMARY KEY,
