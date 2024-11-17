@@ -7,7 +7,7 @@ def create_database(db_path):
         conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
 
-        # Create the database with required tables
+        # Create the database with req tables
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS Pub_PCRevents (
                 PcrKey TEXT PRIMARY KEY,
