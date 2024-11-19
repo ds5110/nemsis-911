@@ -5,8 +5,6 @@ from datetime import datetime
 
 def analyze_cardiac_arrest_events(conn, eArrest_codes_01, eArrest_codes_02, eArrest_codes_03, eDisposition_codes, eDisposition_codes_2):
     cursor = conn.cursor()
-
-    # 1. Fetch ALL potential cardiac arrest events based on eArrest_01
     query = """ SELECT 
                     T1.PcrKey,                      -- unique identifier
                     T1.eArrest_01,                  -- Cardiac Arrest Event
@@ -24,7 +22,6 @@ def analyze_cardiac_arrest_events(conn, eArrest_codes_01, eArrest_codes_02, eArr
     cursor.execute(query, eArrest_codes_01)
     rows = cursor.fetchall()
 
-    # 2. Create DataFrame
     df = pd.DataFrame(rows, columns=[desc[0] for desc in cursor.description])
     print(df.shape)
     print(df.columns)
@@ -52,7 +49,6 @@ def analyze_cardiac_arrest_events(conn, eArrest_codes_01, eArrest_codes_02, eArr
     removed['cpr'] = len(df_filtered) - len(df_filtered[df_filtered['eArrest_03'].isin(eArrest_codes_03)]) 
     df_filtered = df_filtered[df_filtered['eArrest_03'].isin(eArrest_codes_03)] # Keep CPR records
     filtered_df['cpr'] = len(df_filtered) 
-        # Print counts for each eArrest_03 code
     print("\nCounts for each eArrest_03 code:")
     print(df_filtered['eArrest_03'].value_counts()) 
 
@@ -63,13 +59,13 @@ def analyze_cardiac_arrest_events(conn, eArrest_codes_01, eArrest_codes_02, eArr
 
     # EMS Response Time > 60 Minutes
     removed['response_time'] = len(df_filtered) - len(df_filtered[df_filtered['EMSSystemResponseTimeMin'] <= 60])
-    df_filtered = df_filtered[df_filtered['EMSSystemResponseTimeMin'] <= 60] # Keep response times <= 60
+    df_filtered = df_filtered[df_filtered['EMSSystemResponseTimeMin'] <= 60] 
     filtered_df['response_time'] = len(df_filtered)
 
 
     # Not a 911 (Scene) Response 
     removed['not_911'] = len(df_filtered) - len(df_filtered[~df_filtered['eDisposition_12'].isin(eDisposition_codes)])
-    df_filtered = df_filtered[~df_filtered['eDisposition_12'].isin(eDisposition_codes)] # Keep records NOT in the list
+    df_filtered = df_filtered[~df_filtered['eDisposition_12'].isin(eDisposition_codes)] 
     filtered_df['not_911'] = len(df_filtered)
 
     # Unit Did Not Transport or Terminate Resuscitation
@@ -101,7 +97,7 @@ def analyze_cardiac_arrest_events(conn, eArrest_codes_01, eArrest_codes_02, eArr
     print(f"9. Final Count: {len(df_filtered)}")
     return df_filtered
 
-# Example usage:
+
 conn = sqlite3.connect('../db/NEMSIS_PUB.db') 
 eArrest_codes_01 = [3001003, 3001005]
 eArrest_codes_02 = [3002015] 
