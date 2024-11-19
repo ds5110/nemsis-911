@@ -2,17 +2,21 @@ import sqlite3
 import time
 from datetime import datetime
 
-def get_cardiac_arrest_yes_events(conn, values):
+def get_cardiac_arrest_cpr_yes_events(conn, values, eArrest_codes_03):
     cursor = conn.cursor()
-    query = """ SELECT COUNT(*) 
-                FROM Pub_PCRevents 
-                WHERE eArrest_01 IN (?, ?)"""
+    placeholders1 = ', '.join(['?'] * len(eArrest_codes_03)) 
+    placeholders2 = ', '.join(['?'] * len(eArrest_codes_03)) 
+    query = f""" SELECT COUNT(DISTINCT T1.PcrKey)  -- Ensure distinct counts if joining on PcrKey
+                 FROM Pub_PCRevents AS T1
+                 JOIN Pub_PCRevents AS T2 ON T1.PcrKey = T2.PcrKey 
+                 WHERE T1.eArrest_01 IN ({placeholders1}) 
+                 AND T2.eArrest_03 IN ({placeholders2})"""
     start_time = time.time()
-    cursor.execute(query, values) 
-    count = cursor.fetchone()[0] 
-    end_time = time.time()    
+    cursor.execute(query, values + eArrest_codes_03)  # Combine values and eArrest_codes_03
+    count = cursor.fetchone()[0]
+    end_time = time.time()
     execution_time = end_time - start_time
-    print(f"Number of matching rows for Cardiac Arrest-Yes: {count}")
+    print(f"Number of matching rows for Cardiac Arrest-Yes with eArrest_03 filter: {count}")
     print(f"Query execution time: {execution_time:.1f} seconds")
 
 
@@ -31,13 +35,13 @@ def get_count_by_eArrest_and_age(conn, values, age_limit=[18]):
     print(f"Query execution time: {execution_time:.1f} seconds")
 
 
-def get_count_by_eArrest_codes(conn, eArrest_codes_01, eArrest_codes_02):
+def get_count_by_eArrest_codes(conn, eArrest_codes_01, eArrest_codes_03):
     cursor = conn.cursor()
     placeholders_01 = ', '.join(['?'] * len(eArrest_codes_01))
-    placeholders_02 = ', '.join(['?'] * len(eArrest_codes_02))
+    placeholders_03 = ', '.join(['?'] * len(eArrest_codes_03))
     query = f"""  SELECT COUNT(*)
                   FROM PUB_PCREVENTS
-                  WHERE eArrest_01 IN ({placeholders_01}) AND eArrest_02 IN ({placeholders_02})"""
+                  WHERE eArrest_01 IN ({placeholders_01}) AND eArrest_02 IN ({placeholders_03})"""
     start_time = time.time()
     cursor.execute(query, eArrest_codes_01 + eArrest_codes_02)  # Combine the tuples
     count = cursor.fetchone()[0]
@@ -128,15 +132,17 @@ def get_heart_attack_events_excluding_long_ems_response(conn, eArrest_codes, tim
     print(f"Query execution time: {end_time - start_time:.1f} seconds")
     return included_count
 
+
 eDisposition_codes_2 = [4212009, 4212011, 4212015, 4212019, 4212021, 4212025, 4212027, 4212029, 4212031]
 eDisposition_codes = [4212007, 4212039, 4212041, 4212001, 4212003, 4212005] 
 eArrest_codes_01 = [3001003, 3001005]
 eArrest_codes_02 = [3002015]  
+eArrest_codes_03 = [3003001, 3003003, 3003005]
 conn = sqlite3.connect('../db/NEMSIS_PUB.db') 
-get_cardiac_arrest_yes_events(conn, eArrest_codes_01)
-get_count_by_eArrest_and_age(conn, eArrest_codes_01)
-get_count_by_eArrest_codes(conn, eArrest_codes_01, eArrest_codes_02)
-get_count_cardiac_arrest_dispositions(conn, eArrest_codes_01, eDisposition_codes)
-get_count_cardiac_arrest_multiple_vehicles(conn, eArrest_codes_01, eDisposition_codes_2)
-get_heart_attack_events_excluding_long_ems_response(conn, eArrest_codes_01)
+get_cardiac_arrest_cpr_yes_events(conn, eArrest_codes_01, eArrest_codes_03)
+# get_count_by_eArrest_and_age(conn, eArrest_codes_01)
+# get_count_by_eArrest_codes(conn, eArrest_codes_01, eArrest_codes_02)
+# get_count_cardiac_arrest_dispositions(conn, eArrest_codes_01, eDisposition_codes)
+# get_count_cardiac_arrest_multiple_vehicles(conn, eArrest_codes_01, eDisposition_codes_2)
+# get_heart_attack_events_excluding_long_ems_response(conn, eArrest_codes_01)
 conn.close()

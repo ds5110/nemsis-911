@@ -80,10 +80,25 @@ table_definitions = {
             FOREIGN KEY (PcrKey) REFERENCES Pub_PCRevents(PcrKey) 
         )
     """,
+    "FACTPCRARRESTRESUSCITATION": """
+        CREATE TABLE FACTPCRARRESTRESUSCITATION (
+            PcrKey TEXT PRIMARY KEY,
+            eArrest_03 TEXT,
+            FOREIGN KEY (PcrKey) REFERENCES Pub_PCRevents(PcrKey) 
+        )
+    """,
+    
     "FACTPCRARRESTWITNESS": """
         CREATE TABLE FACTPCRARRESTWITNESS (
             PcrKey TEXT PRIMARY KEY, 
             eArrest_04 TEXT,
+            FOREIGN KEY (PcrKey) REFERENCES Pub_PCRevents(PcrKey) 
+        )
+    """,
+    "FACTPCRARRESTCPRPROVIDED": """
+        CREATE TABLE FACTPCRARRESTCPRPROVIDED (
+            PcrKey TEXT PRIMARY KEY, 
+            eArrest_09 TEXT,
             FOREIGN KEY (PcrKey) REFERENCES Pub_PCRevents(PcrKey) 
         )
     """,
