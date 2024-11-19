@@ -12,7 +12,8 @@ def analyze_cardiac_arrest_events(conn, eArrest_codes_01, eArrest_codes_02, eArr
                     T2.eDisposition_12,             -- Not a 911 Scene / Did not Trans or Terminate
                     T3.eArrest_03,                  -- CPR Performed by EMS
                     T4.ageinyear,                   -- Patient < 18
-                    T4.EMSSystemResponseTimeMin     -- EMS Reponse Time > 60 Min
+                    T4.EMSSystemResponseTimeMin,    -- EMS Reponse Time > 60 Min
+                    T4.Urbanicity                    -- Where homeboy lives
                 FROM Pub_PCRevents AS T1
                 JOIN Pub_PCRevents AS T2 ON T1.PcrKey = T2.PcrKey 
                 LEFT JOIN FACTPCRARRESTRESUSCITATION AS T3 ON T1.PcrKey = T3.PcrKey
@@ -98,6 +99,10 @@ def analyze_cardiac_arrest_events(conn, eArrest_codes_01, eArrest_codes_02, eArr
     return df_filtered
 
 
+def calc_urbanicity(df):
+    """Calculates the number of patients for each Urbanicity type."""
+    print(df['Urbanicity'].value_counts()) 
+
 conn = sqlite3.connect('../db/NEMSIS_PUB.db') 
 eArrest_codes_01 = [3001003, 3001005]
 eArrest_codes_02 = [3002015] 
@@ -105,4 +110,5 @@ eArrest_codes_03 = [3003001, 3003003, 3003005]
 eDisposition_codes_2 = [4212009, 4212011, 4212015, 4212019, 4212021, 4212025, 4212027, 4212029, 4212031]
 eDisposition_codes = [4212007, 4212039, 4212041, 4212001, 4212003, 4212005] 
 final_df = analyze_cardiac_arrest_events(conn, eArrest_codes_01, eArrest_codes_02, eArrest_codes_03, eDisposition_codes, eDisposition_codes_2)
+calc_urbanicity(final_df)
 conn.close()
