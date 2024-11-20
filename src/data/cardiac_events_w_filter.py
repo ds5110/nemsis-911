@@ -13,7 +13,7 @@ def analyze_cardiac_arrest_events(conn, eArrest_codes_01, eArrest_codes_02, eArr
                     T3.eArrest_03,                  -- CPR Performed by EMS
                     T4.ageinyear,                   -- Patient < 18
                     T4.EMSSystemResponseTimeMin,    -- EMS Reponse Time > 60 Min
-                    T4.Urbanicity                    -- Where homeboy lives
+                    T4.Urbanicity                   -- Where homeboy lives
                 FROM Pub_PCRevents AS T1
                 JOIN Pub_PCRevents AS T2 ON T1.PcrKey = T2.PcrKey 
                 LEFT JOIN FACTPCRARRESTRESUSCITATION AS T3 ON T1.PcrKey = T3.PcrKey
@@ -80,10 +80,12 @@ def analyze_cardiac_arrest_events(conn, eArrest_codes_01, eArrest_codes_02, eArr
     filtered_df['injury'] = len(df_filtered)
 
     # Missing Data Removal - Apply this last
-    missing_data_mask = df_filtered[['eArrest_03', 'ageinyear', 'eDisposition_12', 'eArrest_02', 'EMSSystemResponseTimeMin']].isnull().any(axis=1)
+    missing_data_mask = (
+    df_filtered[['eArrest_03', 'ageinyear', 'eDisposition_12', 'eArrest_02', 'EMSSystemResponseTimeMin', 'Urbanicity']].isnull() 
+    | df_filtered[['eArrest_03', 'ageinyear', 'eDisposition_12', 'eArrest_02', 'EMSSystemResponseTimeMin', 'Urbanicity']].eq('') 
+    | df_filtered[['eArrest_03', 'ageinyear', 'eDisposition_12', 'eArrest_02', 'EMSSystemResponseTimeMin', 'Urbanicity']].eq('          ')).any(axis=1)
     removed['missing_data'] = len(df_filtered[missing_data_mask])
-    df_filtered = df_filtered[~missing_data_mask]  
-
+    df_filtered = df_filtered[~missing_data_mask] 
     filtered_df['missing_data'] = len(df_filtered) 
 
     print("Cardiac Arrest Analysis:")
@@ -96,6 +98,7 @@ def analyze_cardiac_arrest_events(conn, eArrest_codes_01, eArrest_codes_02, eArr
     print(f"7. Removed with Injury Reported: {removed['injury']} (Remaining: {filtered_df['injury']})")
     print(f"8. Removed due to missing data: {removed['missing_data']} (Remaining: {filtered_df['missing_data']})")
     print(f"9. Final Count: {len(df_filtered)}")
+    print('*******************')
     return df_filtered
 
 
