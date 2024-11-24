@@ -2,6 +2,7 @@ import sqlite3
 import time
 from datetime import datetime
 
+
 def get_cardiac_arrest_cpr_yes_events(conn, values, eArrest_codes_03):
     cursor = conn.cursor()
     placeholders1 = ', '.join(['?'] * len(eArrest_codes_03)) 
@@ -17,6 +18,9 @@ def get_cardiac_arrest_cpr_yes_events(conn, values, eArrest_codes_03):
     end_time = time.time()
     execution_time = end_time - start_time
     print(f"Number of matching rows for Cardiac Arrest-Yes with eArrest_03 filter: {count}")
+    print(f"Query execution time: {execution_time:.1f} seconds")
+
+    print(f"Number of matching rows for Cardiac Arrest-Yes with eArrest_03 filter: {len(rows)}")
     print(f"Query execution time: {execution_time:.1f} seconds")
 
 
@@ -145,4 +149,22 @@ get_cardiac_arrest_cpr_yes_events(conn, eArrest_codes_01, eArrest_codes_03)
 # get_count_cardiac_arrest_dispositions(conn, eArrest_codes_01, eDisposition_codes)
 # get_count_cardiac_arrest_multiple_vehicles(conn, eArrest_codes_01, eDisposition_codes_2)
 # get_heart_attack_events_excluding_long_ems_response(conn, eArrest_codes_01)
+
+
+transport_counts = df['eDisposition_12'].value_counts().loc[transport_codes].to_dict()
+transport_labels = {
+    4212009: "Canceled on Scene (No Patient Contact)",
+    4212011: "Canceled on Scene (No Patient Found)",
+    4212015: "Patient Dead at Scene-No Resuscitation Attempted (Without Transport)",
+    4212019: "Patient Dead at Scene-Resuscitation Attempted (Without Transport)",
+    4212021: "Patient Evaluated, No Treatment/Transport Required",
+    4212025: "Patient Refused Evaluation/Care (Without Transport)",
+    4212027: "Patient Treated, Released (AMA)",
+    4212029: "Patient Treated, Released (per protocol)",
+    4212031: "Patient Treated, Transferred Care to Another EMS Unit"
+}
+
+for code, count in transport_counts.items():
+    print(f"{transport_labels[code]}: {count}")
+
 conn.close()

@@ -4,7 +4,9 @@ import os
 import re
 
 
-conn = sqlite3.connect('../db/NEMSIS_PUB.db')
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+db_path = os.path.join(project_root, "src", "db", "NEMSIS_PUB.db")
+conn = sqlite3.connect(db_path)
 cursor = conn.cursor()
 
 file_column_mapping = {

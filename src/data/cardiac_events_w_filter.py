@@ -2,14 +2,16 @@ import pandas as pd
 import sqlite3
 import time
 from datetime import datetime
+import os
 
-def analyze_cardiac_arrest_events(conn, eArrest_codes_01, eArrest_codes_02, eArrest_codes_03, eDisposition_codes, eDisposition_codes_2):
+def analyze_cardiac_arrest_events(conn, eArrest_codes_01, eArrest_codes_02, eArrest_codes_03, eResponse_codes, eDisposition_codes):
     cursor = conn.cursor()
     query = """ SELECT 
                     T1.PcrKey,                      -- unique identifier
                     T1.eArrest_01,                  -- Cardiac Arrest Event
                     T2.eArrest_02,                  -- Injury Reported
-                    T2.eDisposition_12,             -- Not a 911 Scene / Did not Trans or Terminate
+                    T2.eResponse_05,                -- Not a 911 Scene
+                    T2.eDisposition_12,             -- Did not Trans or Terminate
                     T3.eArrest_03,                  -- CPR Performed by EMS
                     T4.ageinyear,                   -- Patient < 18
                     T4.EMSSystemResponseTimeMin,    -- EMS Reponse Time > 60 Min
@@ -39,7 +41,7 @@ def analyze_cardiac_arrest_events(conn, eArrest_codes_01, eArrest_codes_02, eArr
     filtered_df = {}
     total_cardiac_arrests = len(df)
     df_filtered = df.copy()
-    cols_to_convert = ['PcrKey', 'eArrest_01', 'eArrest_02', 'eDisposition_12', 'eArrest_03',
+    cols_to_convert = ['PcrKey', 'eArrest_01', 'eArrest_02', 'eResponse_05', 'eDisposition_12', 'eArrest_03',
        'ageinyear', 'EMSSystemResponseTimeMin']
 
     for col in cols_to_convert:
@@ -49,9 +51,7 @@ def analyze_cardiac_arrest_events(conn, eArrest_codes_01, eArrest_codes_02, eArr
     # CPR Performed by EMS
     removed['cpr'] = len(df_filtered) - len(df_filtered[df_filtered['eArrest_03'].isin(eArrest_codes_03)]) 
     df_filtered = df_filtered[df_filtered['eArrest_03'].isin(eArrest_codes_03)] # Keep CPR records
-    filtered_df['cpr'] = len(df_filtered) 
-    print("\nCounts for each eArrest_03 code:")
-    print(df_filtered['eArrest_03'].value_counts()) 
+    filtered_df['cpr'] = len(df_filtered)
 
     # Age < 18
     removed['age'] = len(df_filtered) - len(df_filtered[df_filtered['ageinyear'] >= 18])
@@ -63,16 +63,15 @@ def analyze_cardiac_arrest_events(conn, eArrest_codes_01, eArrest_codes_02, eArr
     df_filtered = df_filtered[df_filtered['EMSSystemResponseTimeMin'] <= 60] 
     filtered_df['response_time'] = len(df_filtered)
 
-
     # Not a 911 (Scene) Response 
-    removed['not_911'] = len(df_filtered) - len(df_filtered[~df_filtered['eDisposition_12'].isin(eDisposition_codes)])
-    df_filtered = df_filtered[~df_filtered['eDisposition_12'].isin(eDisposition_codes)] 
-    filtered_df['not_911'] = len(df_filtered)
+    removed['not_911'] = len(df_filtered) - len(df_filtered[df_filtered['eResponse_05'].isin(eResponse_codes)])
+    df_filtered = df_filtered[df_filtered['eResponse_05'].isin(eResponse_codes)] 
+    filtered_df['not_911'] = len(df_filtered) 
 
     # Unit Did Not Transport or Terminate Resuscitation
-    removed['transport'] = len(df_filtered) - len(df_filtered[~df_filtered['eDisposition_12'].isin(eDisposition_codes_2)])
-    df_filtered = df_filtered[~df_filtered['eDisposition_12'].isin(eDisposition_codes_2)]
-    filtered_df['transport'] = len(df_filtered) 
+    removed['transport'] = len(df_filtered) - len(df_filtered[df_filtered['eDisposition_12'].isin(eDisposition_codes)])
+    df_filtered = df_filtered[df_filtered['eDisposition_12'].isin(eDisposition_codes)]
+    filtered_df['transport'] = len(df_filtered)
 
     # Injury Reported
     removed['injury'] = len(df_filtered) - len(df_filtered[~df_filtered['eArrest_02'].isin(eArrest_codes_02)])
@@ -81,9 +80,11 @@ def analyze_cardiac_arrest_events(conn, eArrest_codes_01, eArrest_codes_02, eArr
 
     # Missing Data Removal - Apply this last
     missing_data_mask = (
-    df_filtered[['eArrest_03', 'ageinyear', 'eDisposition_12', 'eArrest_02', 'EMSSystemResponseTimeMin', 'Urbanicity']].isnull() 
-    | df_filtered[['eArrest_03', 'ageinyear', 'eDisposition_12', 'eArrest_02', 'EMSSystemResponseTimeMin', 'Urbanicity']].eq('') 
-    | df_filtered[['eArrest_03', 'ageinyear', 'eDisposition_12', 'eArrest_02', 'EMSSystemResponseTimeMin', 'Urbanicity']].eq('          ')).any(axis=1)
+    df_filtered[['eArrest_03', 'ageinyear', 'eResponse_05', 'eDisposition_12', 'eArrest_02', 'EMSSystemResponseTimeMin', 'Urbanicity']].isnull() 
+    | df_filtered[['eArrest_03', 'ageinyear', 'eResponse_05', 'eDisposition_12', 'eArrest_02', 'EMSSystemResponseTimeMin', 'Urbanicity']].eq('') 
+    | df_filtered[['eArrest_03', 'ageinyear', 'eResponse_05', 'eDisposition_12', 'eArrest_02', 'EMSSystemResponseTimeMin', 'Urbanicity']].eq('          ')
+    | df_filtered[['eArrest_03', 'ageinyear', 'eResponse_05', 'eDisposition_12', 'eArrest_02', 'EMSSystemResponseTimeMin', 'Urbanicity']].isin([7701001, 7701003]) 
+    ).any(axis=1)
     removed['missing_data'] = len(df_filtered[missing_data_mask])
     df_filtered = df_filtered[~missing_data_mask] 
     filtered_df['missing_data'] = len(df_filtered) 
@@ -110,8 +111,13 @@ conn = sqlite3.connect('../db/NEMSIS_PUB.db')
 eArrest_codes_01 = [3001003, 3001005]
 eArrest_codes_02 = [3002015] 
 eArrest_codes_03 = [3003001, 3003003, 3003005]
-eDisposition_codes_2 = [4212009, 4212011, 4212015, 4212019, 4212021, 4212025, 4212027, 4212029, 4212031]
-eDisposition_codes = [4212007, 4212039, 4212041, 4212001, 4212003, 4212005] 
-final_df = analyze_cardiac_arrest_events(conn, eArrest_codes_01, eArrest_codes_02, eArrest_codes_03, eDisposition_codes, eDisposition_codes_2)
+eResponse_codes = [2205001, 2205003, 2205009]
+eDisposition_codes = [4212019, 4212033] 
+final_df = analyze_cardiac_arrest_events(conn, eArrest_codes_01, eArrest_codes_02, eArrest_codes_03, eResponse_codes, eDisposition_codes)
 calc_urbanicity(final_df)
+
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")) 
+file_path = os.path.join(project_root, "src", "db", "filtered_cardiac_events_df.pkl")
+final_df.to_pickle(file_path) 
+
 conn.close()

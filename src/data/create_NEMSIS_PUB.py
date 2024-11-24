@@ -1,5 +1,6 @@
 import sqlite3
 import csv
+import os
 
 table_definitions = {
     "Pub_PCRevents": """
@@ -119,7 +120,9 @@ table_definitions = {
     """
 }
 
-conn = sqlite3.connect('../db/NEMSIS_PUB.db') 
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+db_path = os.path.join(project_root, "src", "db", "NEMSIS_PUB.db")
+conn = sqlite3.connect(db_path) 
 cursor = conn.cursor()
 
 for table_name, create_table_sql in table_definitions.items():
