@@ -36,19 +36,47 @@ def main():
     comp_elements_df = computed_elements()
     events_df = events_df.merge(comp_elements_df, on='PcrKey', suffixes=(None, '_y'))
 
-    # ---------------------- TJ 11/10 - add in new csvs to join ---------------------------- #
 
+
+
+
+
+    # ---------------------- TJ 11/10 - add in new csvs to join ---------------------------- #
+  
     arrest_rosc_df = fact_pcr_arrest_rosc()
-    events_df = events_df.merge(arrest_rosc_df, on='PcrKey', suffixes=(None, '_y'))
+    arrest_rosc_df = arrest_rosc_df.replace(to_replace=[7701001, 7701003, 7701005], value=pd.NA)  # replace NEMSIS NOT values
+    logger.debug("Save arrest_rosc.pickle")
+    save_path = Path(__file__).parent.parent.parent / 'data' / 'processed' / 'arrest_rosc.pickle'
+    arrest_rosc_df.to_pickle(path=save_path)
+    #events_df = events_df.merge(arrest_rosc_df, on='PcrKey', suffixes=(None, '_y'))
 
     pcr_arrest_witness = fact_pcr_arrest_witness()
-    events_df = events_df.merge(pcr_arrest_witness, on='PcrKey', suffixes=(None, '_y'))
+    pcr_arrest_witness = pcr_arrest_witness.replace(to_replace=[7701001, 7701003, 7701005], value=pd.NA)  # replace NEMSIS NOT values
+    logger.debug("Save arrest_witness.pickle")
+    save_path = Path(__file__).parent.parent.parent / 'data' / 'processed' / 'arrest_witness.pickle'
+    pcr_arrest_witness.to_pickle(path=save_path)
+    #events_df = events_df.merge(pcr_arrest_witness, on='PcrKey', suffixes=(None, '_y'))
 
     medications_df = fact_pcr_medication() 
-    events_df = events_df.merge(medications_df, on='PcrKey', suffixes=(None, '_y'))
+    medications_df = medications_df.replace(to_replace=[7701001, 7701003, 7701005], value=pd.NA)  # replace NEMSIS NOT values
+    logger.debug("Save medications.pickle")
+    save_path = Path(__file__).parent.parent.parent / 'data' / 'processed' / 'medications.pickle'
+    medications_df.to_pickle(path=save_path)
+    #events_df = events_df.merge(medications_df, on='PcrKey', suffixes=(None, '_y'))
 
     race_df = pcr_patient_race_group()
-    events_df = events_df.merge(race_df, on='PcrKey', suffixes=(None, '_y'))
+    race_df = race_df.replace(to_replace=[7701001, 7701003, 7701005], value=pd.NA)  # replace NEMSIS NOT values
+    logger.debug("Save race.pickle")
+    save_path = Path(__file__).parent.parent.parent / 'data' / 'processed' / 'race.pickle'
+    race_df.to_pickle(path=save_path)
+    #events_df = events_df.merge(race_df, on='PcrKey', suffixes=(None, '_y'))
+
+
+
+
+
+
+
 
     # -------------------------------------------------------------------------------------- #
 
@@ -254,6 +282,45 @@ def computed_elements() -> pd.DataFrame:
     return df
 
 
+def _get_interim_path() -> Path:
+    """Return an absolute path to the directory PROJECT_ROOT/data/interim."""
+    return Path(__file__).parent.parent.parent / 'data' / 'interim'
+
+
+def read_nemsis_file_to_df(filepath: Path, *, usecols: str | list[str] | None = None) -> pd.DataFrame:
+    """Import an original NEMSIS text file to a DataFrame.
+
+    Keyword arguments:
+    filepath -- an absolute path to the file
+    usecols -- the unquoted column name or names to import (default is all columns)
+    """
+    quoted_cols = _quote_column_names(usecols)
+    dtype = None
+    if usecols is not None:
+        dtype = {}
+        for col in quoted_cols:
+            dtype[col] = np.int32
+    df = pd.read_csv(filepath,
+                     sep=r'~\|~',      # treated as a regular expression, so the pipe must be escaped
+                     usecols=quoted_cols,
+                     dtype=dtype,
+                     engine='python')  # prevents warning messages when using multi-character separators
+    # Column names are wrapped in extraneous single quotes. Remove them.
+    df.rename(mapper=lambda n: _unquote_column_names(n), axis='columns', inplace=True)
+    return df
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -379,33 +446,6 @@ def pcr_patient_race_group() -> pd.DataFrame:
 
 
 
-
-def _get_interim_path() -> Path:
-    """Return an absolute path to the directory PROJECT_ROOT/data/interim."""
-    return Path(__file__).parent.parent.parent / 'data' / 'interim'
-
-
-def read_nemsis_file_to_df(filepath: Path, *, usecols: str | list[str] | None = None) -> pd.DataFrame:
-    """Import an original NEMSIS text file to a DataFrame.
-
-    Keyword arguments:
-    filepath -- an absolute path to the file
-    usecols -- the unquoted column name or names to import (default is all columns)
-    """
-    quoted_cols = _quote_column_names(usecols)
-    dtype = None
-    if usecols is not None:
-        dtype = {}
-        for col in quoted_cols:
-            dtype[col] = np.int32
-    df = pd.read_csv(filepath,
-                     sep=r'~\|~',      # treated as a regular expression, so the pipe must be escaped
-                     usecols=quoted_cols,
-                     dtype=dtype,
-                     engine='python')  # prevents warning messages when using multi-character separators
-    # Column names are wrapped in extraneous single quotes. Remove them.
-    df.rename(mapper=lambda n: _unquote_column_names(n), axis='columns', inplace=True)
-    return df
 
 
 def _quote_column_names(col: str | list[str] | None) -> str | list[str] | None:

@@ -12,7 +12,12 @@ def main():
         "eArrest_12",
         "eMedications_03",
         "eMedications_05",
-        "eMedications_06"
+        "eMedications_06", 
+        "eAirway_01", 
+        "eAirway_02", 
+        "eAirway_03", 
+        "eAirway_08", 
+        "eAirway_10"
     ]
 
     # get all .txt files holding data, store in list

@@ -1,6 +1,6 @@
 Table: events_renamed.pickle
-	Number of Rows: 1226434
-	Number of Columns: 45
+	Number of Rows: 290559
+	Number of Columns: 38
 
 **Column at Index 0: 'PcrKey'**
  - Datatype: Int64
@@ -14,7 +14,7 @@ Table: events_renamed.pickle
 
 **Column at Index 2: 'eDispatch_02'**
  - Datatype: Int64
- - Number of Null Values: 558026  |  Percent Null: 45.5%
+ - Number of Null Values: 135314  |  Percent Null: 46.57%
  - Number of Unique Values: 4
 
 **Column at Index 3: 'eArrest_01'**
@@ -24,7 +24,7 @@ Table: events_renamed.pickle
 
 **Column at Index 4: 'eArrest_02'**
  - Datatype: Int64
- - Number of Null Values: 31311  |  Percent Null: 2.55%
+ - Number of Null Values: 11912  |  Percent Null: 4.1%
  - Number of Unique Values: 1
 
 **Column at Index 5: 'CPR_Care_Provided_Prior_to_EMS_Arrival'**
@@ -34,17 +34,17 @@ Table: events_renamed.pickle
 
 **Column at Index 6: 'eArrest_07'**
  - Datatype: Int64
- - Number of Null Values: 33077  |  Percent Null: 2.7%
+ - Number of Null Values: 14395  |  Percent Null: 4.95%
  - Number of Unique Values: 3
 
 **Column at Index 7: 'eArrest_11'**
  - Datatype: Int64
- - Number of Null Values: 67158  |  Percent Null: 5.48%
+ - Number of Null Values: 38374  |  Percent Null: 13.21%
  - Number of Unique Values: 6
 
 **Column at Index 8: 'eArrest_16'**
  - Datatype: Int64
- - Number of Null Values: 534633  |  Percent Null: 43.59%
+ - Number of Null Values: 134937  |  Percent Null: 46.44%
  - Number of Unique Values: 6
 
 **Column at Index 9: 'End_of_EMS_Cardiac_Arrest_Event'**
@@ -59,27 +59,27 @@ Table: events_renamed.pickle
 
 **Column at Index 11: 'eDisposition_19'**
  - Datatype: Int64
- - Number of Null Values: 594428  |  Percent Null: 48.47%
+ - Number of Null Values: 161193  |  Percent Null: 55.48%
  - Number of Unique Values: 4
 
 **Column at Index 12: 'eDisposition_16'**
  - Datatype: Int64
- - Number of Null Values: 455992  |  Percent Null: 37.18%
+ - Number of Null Values: 139442  |  Percent Null: 47.99%
  - Number of Unique Values: 9
 
 **Column at Index 13: 'eDisposition_21'**
  - Datatype: Int64
- - Number of Null Values: 469878  |  Percent Null: 38.31%
+ - Number of Null Values: 145961  |  Percent Null: 50.23%
  - Number of Unique Values: 12
 
 **Column at Index 14: 'eDisposition_22'**
  - Datatype: Int64
- - Number of Null Values: 1114479  |  Percent Null: 90.87%
+ - Number of Null Values: 267949  |  Percent Null: 92.22%
  - Number of Unique Values: 20
 
 **Column at Index 15: 'eDisposition_23'**
  - Datatype: Int64
- - Number of Null Values: 764297  |  Percent Null: 62.32%
+ - Number of Null Values: 200647  |  Percent Null: 69.06%
  - Number of Unique Values: 16
 
 **Column at Index 16: 'eOutcome_01'**
@@ -89,32 +89,32 @@ Table: events_renamed.pickle
 
 **Column at Index 17: 'eOutcome_02'**
  - Datatype: Int64
- - Number of Null Values: 1212947  |  Percent Null: 98.9%
+ - Number of Null Values: 288052  |  Percent Null: 99.14%
  - Number of Unique Values: 15
 
 **Column at Index 18: 'ePatient_13'**
  - Datatype: Int64
- - Number of Null Values: 2880  |  Percent Null: 0.23%
+ - Number of Null Values: 1236  |  Percent Null: 0.43%
  - Number of Unique Values: 3
 
 **Column at Index 19: 'ePatient_15'**
  - Datatype: Int64
- - Number of Null Values: 6854  |  Percent Null: 0.56%
+ - Number of Null Values: 2537  |  Percent Null: 0.87%
  - Number of Unique Values: 118
 
 **Column at Index 20: 'ePatient_16'**
  - Datatype: Int64
- - Number of Null Values: 6837  |  Percent Null: 0.56%
+ - Number of Null Values: 2363  |  Percent Null: 0.81%
  - Number of Unique Values: 5
 
 **Column at Index 21: 'ePayment_01'**
  - Datatype: Int64
- - Number of Null Values: 687987  |  Percent Null: 56.1%
+ - Number of Null Values: 177345  |  Percent Null: 61.04%
  - Number of Unique Values: 12
 
 **Column at Index 22: 'ePayment_50'**
  - Datatype: Int64
- - Number of Null Values: 817208  |  Percent Null: 66.63%
+ - Number of Null Values: 198583  |  Percent Null: 68.35%
  - Number of Unique Values: 9
 
 **Column at Index 23: 'eResponse_05'**
@@ -139,47 +139,47 @@ Table: events_renamed.pickle
 
 **Column at Index 27: 'eScene_01'**
  - Datatype: Int64
- - Number of Null Values: 354103  |  Percent Null: 28.87%
+ - Number of Null Values: 79846  |  Percent Null: 27.48%
  - Number of Unique Values: 2
 
 **Column at Index 28: 'eScene_06'**
  - Datatype: Int64
- - Number of Null Values: 58234  |  Percent Null: 4.75%
+ - Number of Null Values: 13571  |  Percent Null: 4.67%
  - Number of Unique Values: 3
 
 **Column at Index 29: 'eScene_07'**
  - Datatype: Int64
- - Number of Null Values: 226580  |  Percent Null: 18.47%
+ - Number of Null Values: 63418  |  Percent Null: 21.83%
  - Number of Unique Values: 2
 
 **Column at Index 30: 'eScene_08'**
  - Datatype: Int64
- - Number of Null Values: 1216193  |  Percent Null: 99.16%
+ - Number of Null Values: 287468  |  Percent Null: 98.94%
  - Number of Unique Values: 5
 
 **Column at Index 31: 'eSituation_02'**
  - Datatype: Int64
- - Number of Null Values: 55627  |  Percent Null: 4.54%
+ - Number of Null Values: 15342  |  Percent Null: 5.28%
  - Number of Unique Values: 3
 
 **Column at Index 32: 'eSituation_07'**
  - Datatype: Int64
- - Number of Null Values: 405225  |  Percent Null: 33.04%
+ - Number of Null Values: 99806  |  Percent Null: 34.35%
  - Number of Unique Values: 9
 
 **Column at Index 33: 'eSituation_08'**
  - Datatype: Int64
- - Number of Null Values: 366250  |  Percent Null: 29.86%
+ - Number of Null Values: 97053  |  Percent Null: 33.4%
  - Number of Unique Values: 11
 
 **Column at Index 34: 'eSituation_13'**
  - Datatype: Int64
- - Number of Null Values: 323098  |  Percent Null: 26.34%
+ - Number of Null Values: 71141  |  Percent Null: 24.48%
  - Number of Unique Values: 4
 
 **Column at Index 35: 'eDisposition_17'**
  - Datatype: Int64
- - Number of Null Values: 519042  |  Percent Null: 42.32%
+ - Number of Null Values: 162723  |  Percent Null: 56.0%
  - Number of Unique Values: 4
 
 **Column at Index 36: 'Urbanicity'**
@@ -191,39 +191,4 @@ Table: events_renamed.pickle
  - Datatype: string
  - Number of Null Values: 0  |  Percent Null: 0.0%
  - Number of Unique Values: 120
-
-**Column at Index 38: 'eArrest_12'**
- - Datatype: Int64
- - Number of Null Values: 62727  |  Percent Null: 5.11%
- - Number of Unique Values: 4
-
-**Column at Index 39: 'eArrest_04'**
- - Datatype: Int64
- - Number of Null Values: 30330  |  Percent Null: 2.47%
- - Number of Unique Values: 4
-
-**Column at Index 40: 'eMedications_03'**
- - Datatype: string
- - Number of Null Values: 0  |  Percent Null: 0.0%
- - Number of Unique Values: 462
-
-**Column at Index 41: 'eMedications_03Descr'**
- - Datatype: string
- - Number of Null Values: 0  |  Percent Null: 0.0%
- - Number of Unique Values: 462
-
-**Column at Index 42: 'eMedications_05'**
- - Datatype: object
- - Number of Null Values: 0  |  Percent Null: 0.0%
- - Number of Unique Values: 696
-
-**Column at Index 43: 'eMedications_06'**
- - Datatype: object
- - Number of Null Values: 8182  |  Percent Null: 0.67%
- - Number of Unique Values: 73
-
-**Column at Index 44: 'ePatient_14'**
- - Datatype: Int64
- - Number of Null Values: 171137  |  Percent Null: 13.95%
- - Number of Unique Values: 6
 

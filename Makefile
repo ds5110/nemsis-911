@@ -41,36 +41,28 @@ unzipped_csvs = ./data/interim/ComputedElements.txt \
                 ./data/interim/PCRVITALGLASGOWQUALIFIERGROUP.txt \
                 ./data/interim/Pub_PCRevents.txt
 
-build: ./reports/chi-square.txt
+build: ./reports/chi-square.txt ./reports/preliminary_eda.txt eda_charts col_headers find_cols
 
-environment:
-	conda env create -n project-duggani -f environment.yml
-# conda activate project-duggani
-
-prelim-eda:
-	python src/data/column_info.py
-
-prelim-eda_sample: 
-	python src/data/column_info_sample.py
-
-eda-charts:
-	python src/data/eda_charts.py
-
-create-dirs:
-	mkdir -p figs/fig_samples
-	mkdir -p data_sample
-
-eda-charts_sample: create-dirs
-	python src/data/eda_charts_sample.py
-   
 ./reports/chi-square.txt: ./data/processed/events_renamed.pickle
 	python ./src/data/analysis.py
+
+./reports/preliminary_eda.txt: ./data/processed/events_renamed.pickle
+	python ./src/data/column_info.py
+
+eda_charts: ./data/processed/events_renamed.pickle
+	python ./src/data/eda_charts.py
+
+col_headers: ./data/repaired/ASCII\ 2022_repaired.zip
+	python ./src/data/nemsis_text_format.py
+
+find_cols: col_headers
+	python ./src/data/nemsis_find_cols.py
 
 ./data/processed/events_renamed.pickle: ./data/processed/events.pickle
 	python ./src/data/rename_columns.py
 
 # Convert the CSV to a pickle of a pandas dataframe
-./data/processed/events.pickle: ./data/csv/Pub_PCRevents.csv ./data/csv/ComputedElements.csv
+./data/processed/events.pickle: ./data/csv/Pub_PCRevents.csv ./data/csv/ComputedElements.csv ./data/csv/FACTPCRMEDICATION.csv ./data/csv/PCRPATIENTRACEGROUP.csv ./data/csv/FACTPCRARRESTWITNESS.csv ./data/csv/FACTPCRARRESTROSC.csv
 	python ./src/data/make_dataset.py
 
 # Pub_PCRevents.txt uses a multi-character delimiter, which means pandas.read_csv() must use the python parsing engine.
@@ -81,6 +73,7 @@ eda-charts_sample: create-dirs
 
 ./data/csv/ComputedElements.csv: $(unzipped_csvs)
 	sed 's/~|~/,/g' ./data/interim/ComputedElements.txt > ./data/csv/ComputedElements.csv
+
 
 # --------------- adding additional csv files taj 11/10 ---------------------------- #
 ./data/csv/FACTPCRMEDICATION.csv: $(unzipped_csvs)
@@ -95,14 +88,6 @@ eda-charts_sample: create-dirs
 ./data/csv/FACTPCRARRESTROSC.csv: $(unzipped_csvs)
 	sed 's/~|~/,/g' ./data/interim/FACTPCRARRESTROSC.txt > ./data/csv/FACTPCRARRESTROSC.csv
 
-# COMMAND TO RERUN make_dataset & rename_columns after manually added csvs
-# TODO: revise later to integrate into main workflow
-remake_pickles: 
-	python ./src/data/make_dataset.py && python ./src/data/rename_columns.py
-
-
-
-# ---------------------------------------------------------------------------------- #
 
 $(unzipped_csvs) &: ./data/repaired/ASCII\ 2022_repaired.zip
 	unzip -jo "./data/repaired/ASCII 2022_repaired.zip" -d ./data/interim
@@ -112,8 +97,54 @@ $(unzipped_csvs) &: ./data/repaired/ASCII\ 2022_repaired.zip
 ./data/repaired/ASCII\ 2022_repaired.zip: ./data/raw/ASCII\ 2022.zip
 	zip -FFfz "./data/raw/ASCII 2022.zip" --out "./data/repaired/ASCII 2022_repaired.zip"
 
+
 clean:
 	find ./data/processed/ -type f -not -name '.gitignore' -delete
 	find ./data/csv/ -type f -not -name '.gitignore' -delete
 	find ./data/interim/ -type f -not -name '.gitignore' -delete
 	find ./data/repaired/ -type f -not -name '.gitignore' -delete
+	rm -f figs/*
+	rm -f reports/col_locations/cols_of_interest.txt 
+	rm -f reports/chi-square.txt
+	rm -f reports/preliminary_eda.txt
+	rm -f reports/text_file_headers/*
+
+#environment:
+#	conda env create -n project-duggani -f environment.yml
+# conda activate project-duggani
+
+
+
+
+
+
+
+
+
+
+# ------------------ IF SUCCESSFUL, CAN BE DELETED ---------------------- #
+#eda-charts:
+#	python src/data/eda_charts.py
+
+#prelim-eda:
+#	python src/data/column_info.py
+
+
+
+#create-dirs:
+#	mkdir -p figs/fig_samples
+#	mkdir -p data_sample
+#prelim-eda_sample: 
+#	python src/data/column_info_sample.py
+#eda-charts_sample: create-dirs
+#	python src/data/eda_charts_sample.py
+# COMMAND TO RERUN make_dataset & rename_columns after manually added csvs
+# TODO: revise later to integrate into main workflow
+#remake_pickles: 
+#	python ./src/data/make_dataset.py && python ./src/data/rename_columns.py
+
+# ----------------------------------------------------------------------- #
+
+
+
+
