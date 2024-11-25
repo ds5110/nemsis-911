@@ -41,7 +41,7 @@ unzipped_csvs = ./data/interim/ComputedElements.txt \
                 ./data/interim/PCRVITALGLASGOWQUALIFIERGROUP.txt \
                 ./data/interim/Pub_PCRevents.txt
 
-build: ./reports/chi-square.txt ./reports/preliminary_eda.txt eda_charts col_headers find_cols
+build: ./reports/chi-square.txt ./reports/preliminary_eda.txt eda_charts col_headers find_cols setup_db
 
 ./reports/chi-square.txt: ./data/processed/events_renamed.pickle
 	python ./src/data/analysis.py
@@ -58,11 +58,14 @@ col_headers: ./data/repaired/ASCII\ 2022_repaired.zip
 find_cols: col_headers
 	python ./src/data/nemsis_find_cols.py
 
+setup_db:
+	python ./src/data/db_setup.py
+
 ./data/processed/events_renamed.pickle: ./data/processed/events.pickle
 	python ./src/data/rename_columns.py
 
 # Convert the CSV to a pickle of a pandas dataframe
-./data/processed/events.pickle: ./data/csv/Pub_PCRevents.csv ./data/csv/ComputedElements.csv ./data/csv/FACTPCRMEDICATION.csv ./data/csv/PCRPATIENTRACEGROUP.csv ./data/csv/FACTPCRARRESTWITNESS.csv ./data/csv/FACTPCRARRESTROSC.csv
+./data/processed/events.pickle: ./data/csv/Pub_PCRevents.csv ./data/csv/ComputedElements.csv ./data/csv/FACTPCRMEDICATION.csv ./data/csv/PCRPATIENTRACEGROUP.csv ./data/csv/FACTPCRARRESTWITNESS.csv ./data/csv/FACTPCRARRESTROSC.csv ./data/csv/FACTPCRARRESTRESUSCITATION.csv
 	python ./src/data/make_dataset.py
 
 # Pub_PCRevents.txt uses a multi-character delimiter, which means pandas.read_csv() must use the python parsing engine.
@@ -88,6 +91,8 @@ find_cols: col_headers
 ./data/csv/FACTPCRARRESTROSC.csv: $(unzipped_csvs)
 	sed 's/~|~/,/g' ./data/interim/FACTPCRARRESTROSC.txt > ./data/csv/FACTPCRARRESTROSC.csv
 
+./data/csv/FACTPCRARRESTRESUSCITATION.csv: $(unzipped_csvs)
+	sed 's/~|~/,/g' ./data/interim/FACTPCRARRESTRESUSCITATION.txt > ./data/csv/FACTPCRARRESTRESUSCITATION.csv
 
 $(unzipped_csvs) &: ./data/repaired/ASCII\ 2022_repaired.zip
 	unzip -jo "./data/repaired/ASCII 2022_repaired.zip" -d ./data/interim
@@ -109,42 +114,6 @@ clean:
 	rm -f reports/preliminary_eda.txt
 	rm -f reports/text_file_headers/*
 
-#environment:
-#	conda env create -n project-duggani -f environment.yml
+environment:
+	conda env create -n project-duggani -f environment.yml
 # conda activate project-duggani
-
-
-
-
-
-
-
-
-
-
-# ------------------ IF SUCCESSFUL, CAN BE DELETED ---------------------- #
-#eda-charts:
-#	python src/data/eda_charts.py
-
-#prelim-eda:
-#	python src/data/column_info.py
-
-
-
-#create-dirs:
-#	mkdir -p figs/fig_samples
-#	mkdir -p data_sample
-#prelim-eda_sample: 
-#	python src/data/column_info_sample.py
-#eda-charts_sample: create-dirs
-#	python src/data/eda_charts_sample.py
-# COMMAND TO RERUN make_dataset & rename_columns after manually added csvs
-# TODO: revise later to integrate into main workflow
-#remake_pickles: 
-#	python ./src/data/make_dataset.py && python ./src/data/rename_columns.py
-
-# ----------------------------------------------------------------------- #
-
-
-
-

@@ -72,10 +72,11 @@ def main():
     #events_df = events_df.merge(race_df, on='PcrKey', suffixes=(None, '_y'))
 
 
-
-
-
-
+    resus_df = fact_pcr_arrest_resuscitation()
+    resus_df = resus_df.replace(to_replace=[7701001, 7701003, 7701005], value=pd.NA)  # replace NEMSIS NOT values
+    logger.debug("Save pcr_arrest_resuscitation.pickle")
+    save_path = Path(__file__).parent.parent.parent / 'data' / 'processed' / 'pcr_arrest_resuscitation.pickle'
+    resus_df.to_pickle(path=save_path)
 
 
     # -------------------------------------------------------------------------------------- #
@@ -358,6 +359,28 @@ def fact_pcr_arrest_rosc() -> pd.DataFrame:
 
     logger.debug("exiting fact_pcr_arrest_rosc()")
     return df
+
+
+def fact_pcr_arrest_resuscitation() -> pd.DataFrame:
+    """
+    Read relevent columns from FACTPCRARRESTRESUSCITATION.csv into a DataFrame.
+
+    Relevant columns are PcrKey, eArrest_12
+    """
+    logger.debug("entering fact_pcr_arrest_resuscitation()")
+    fp = Path(__file__).parent.parent.parent / 'data' / 'csv' / 'FACTPCRARRESTRESUSCITATION.csv'
+    usecols = ["'PcrKey'", "'eArrest_03'"] 
+    df = pd.read_csv(fp, usecols = usecols)
+
+    # Remove quotes from column names
+    mapper = {quoted_col: _unquote_column_names(quoted_col) for quoted_col in usecols}
+    df.rename(mapper=mapper, axis='columns', inplace=True)
+
+    #TODO: unclear if NAs need to be removed like Aaron did in computed_elements()
+
+    logger.debug("exiting fact_pcr_arrest_resuscitation()")
+    return df
+
 
 
 def fact_pcr_arrest_witness() -> pd.DataFrame:

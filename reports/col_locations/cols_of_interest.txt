@@ -1,3 +1,4 @@
+eArrest_03 - table location: FACTPCRARRESTRESUSCITATION.txt
 eMedications_03 - table location: FACTPCRMEDICATION.txt
 eMedications_05 - table location: FACTPCRMEDICATION.txt
 eMedications_06 - table location: FACTPCRMEDICATION.txt

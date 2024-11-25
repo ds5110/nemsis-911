@@ -8,6 +8,7 @@ def main():
     cols_of_interest = [
         "ePatient_01",
         "ePatient_14",
+        "eArrest_03",
         "eArrest_04",
         "eArrest_12",
         "eMedications_03",
