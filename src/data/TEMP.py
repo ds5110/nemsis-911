@@ -54,16 +54,26 @@ def main():
 
     
     query = """
+    with cte as(
     select e.*
     , q.eArrest_03
     from events e
     left join resuscitation q on q.PcrKey = e.PcrKey
+    )
+    select 
+    c.PcrKey
+    , count(c.eArrest_03) as NumCodes
+    from cte c
+    group by c.PcrKey
+    order by count(c.eArrest_03) desc
     """
     test_df = pd.read_sql_query(query, con)
     print(test_df.shape)
-    print(test_df.head)
-    
-
+    output = test_df.head(10)
+    print(output.dtypes)
+    #for col in output:
+    #    print(type(col))
+    #display(test_df)
 
 
 
@@ -104,36 +114,6 @@ def main():
     #print(res.shape)
     #print(res.head)  
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

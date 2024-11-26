@@ -1,0 +1,48 @@
+Query:
+'''
+    with cte as(
+        select e.*
+        , q.eArrest_03
+        from events e
+        left join resuscitation q on q.PcrKey = e.PcrKey
+    )
+    
+    , aggregated as (
+        select 
+        c.PcrKey
+        , count(c.eArrest_03) as NumCodes
+        , sum(case when c.eArrest_03 in ('3003007', '3003009', '3003011') then 1 
+            else 0 end) as NumNotAttemptedCodes
+        , sum(case when c.eArrest_03 in ('3003001', '3003003', '3003005') then 1 
+            else 0 end) as NumAttemptedCodes
+        from cte c
+        group by c.PcrKey
+    )
+
+    select * from aggregated
+    where NumNotAttemptedCodes <> 0
+    and NumAttemptedCodes <> 0
+    
+'''
+
+|  PcrKey  |  NumCodes  |  NumNotAttemptedCodes  |  NumAttemptedCodes  |
+|  169828180  |  2  |  1  |  1  |
+|  170223060  |  2  |  1  |  1  |
+|  170767469  |  2  |  1  |  1  |
+|  170928978  |  2  |  1  |  1  |
+|  171106211  |  3  |  1  |  2  |
+|  171117466  |  3  |  1  |  2  |
+|  171258804  |  2  |  1  |  1  |
+|  171535210  |  3  |  1  |  2  |
+|  171573654  |  2  |  1  |  1  |
+|  171637308  |  3  |  1  |  2  |
+|  172060250  |  3  |  1  |  2  |
+|  172092528  |  2  |  1  |  1  |
+|  172216520  |  3  |  1  |  2  |
+|  172285936  |  3  |  1  |  2  |
+|  172630482  |  3  |  1  |  2  |
+|  172630509  |  2  |  1  |  1  |
+|  173040787  |  2  |  1  |  1  |
+|  173041490  |  3  |  1  |  2  |
+|  173270531  |  2  |  1  |  1  |
+|  173737150  |  2  |  1  |  1  |

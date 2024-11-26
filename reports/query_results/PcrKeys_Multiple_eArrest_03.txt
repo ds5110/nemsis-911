@@ -1,0 +1,39 @@
+Query:
+'''
+    with cte as(
+        select e.*
+        , q.eArrest_03
+        from events e
+        left join resuscitation q on q.PcrKey = e.PcrKey
+    )
+    
+    select 
+    c.PcrKey
+    , count(c.eArrest_03) as NumCodes
+    from cte c
+    group by c.PcrKey
+    order by count(c.eArrest_03) desc
+    
+'''
+
+|  PcrKey  |  NumCodes  |
+|  236146666  |  3  |
+|  236113284  |  3  |
+|  236113187  |  3  |
+|  236085543  |  3  |
+|  236082857  |  3  |
+|  236047812  |  3  |
+|  236047494  |  3  |
+|  236047324  |  3  |
+|  236046811  |  3  |
+|  236046268  |  3  |
+|  236044488  |  3  |
+|  236044014  |  3  |
+|  235996877  |  3  |
+|  235996742  |  3  |
+|  235996298  |  3  |
+|  235906744  |  3  |
+|  235906028  |  3  |
+|  235905984  |  3  |
+|  235905541  |  3  |
+|  235905087  |  3  |
