@@ -3,10 +3,12 @@ from pathlib import Path
 import pandas as pd
 
 def main():
+
+    # create a new file to store the sqlite db 
     new_file = "./data/NEMSIS.db"
 
+    # connect to db
     conn = sqlite3.connect(new_file)
-
     cursor = conn.cursor()
 
     sql = '''
@@ -126,9 +128,7 @@ def main():
         (med_df.eMedications_03 == 1233778) | (med_df.eMedications_03 == 1305268) 
     ]
 
-    #med_df['eMedications_03'] = med_df['eMedications_03'].replace('Unknown   ', None)
     med_df['eMedications_05'] = med_df['eMedications_05'].astype(float)
-    #med_df['eMedications_03'] = med_df['eMedications_03'].replace('Unknown   ', None)
     med_df['eMedications_06'] = med_df['eMedications_06'].str.strip()
     med_df['eMedications_06'] = med_df['eMedications_06'].astype(float)
 

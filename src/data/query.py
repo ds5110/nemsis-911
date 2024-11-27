@@ -64,8 +64,6 @@ def main():
     from epinephrine e 
 
     group by e.PcrKey
-    
-
     """
     query_df = pd.read_sql_query(query, con)
 

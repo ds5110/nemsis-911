@@ -4,7 +4,9 @@ from pathlib import Path
 import sqlite3
 
 def main():
-    
+    # create_NEMSIS_PUB
+    # load_data_NEMSIS_PUB
+    # query_NEMSIS_PUB
     # --------------------------------------- Connect to SQLite Database to Query Data --------------------------------------- #
     
     con = sqlite3.connect('data/NEMSIS.db')
@@ -218,13 +220,10 @@ def main():
     print(f"\t{df['ePatient_14'].isna().sum()} records with missing race")
     print(df['ePatient_14'].unique())
 
-    # 73664 total
-    print(df['EpinephrineAdministered'].value_counts())
-    print(df['TotalDosesEpinephrine'].value_counts())
-
     # -------------------------------------- Saving Final Pickle File with Cleaned Data -------------------------------------- #
 
-
+    save_path = Path(__file__).parent.parent.parent / 'data' / 'processed' / 'expanded_events.pickle'
+    df.to_pickle(path=save_path)
 
 
 if __name__ == "__main__":
