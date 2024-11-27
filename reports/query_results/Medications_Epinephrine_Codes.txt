@@ -1,0 +1,30 @@
+Query:
+'''
+    select distinct m.eMedications_03, m.eMedications_03Descr from medications m 
+    where m.eMedications_03Descr like '%epinephrine%'
+    and m.eMedications_03Descr not like '%norepinephrine%'
+    order by m.eMedications_03
+    
+'''
+
+|  eMedications_03  |  eMedications_03Descr  |
+|  362.0  |  epinephrine hydrochloride                                                                             |
+|  3992.0  |  Epinephrine                                                                                           |
+|  66887.0  |  Racepinephrine                                                                                        |
+|  107602.0  |  Epinephrine / Lidocaine                                                                               |
+|  107606.0  |  Bupivacaine / Epinephrine                                                                             |
+|  214545.0  |  Epinephrine / Etidocaine                                                                              |
+|  214547.0  |  EPINEPHrine / Prilocaine                                                                              |
+|  284622.0  |  Articaine / Epinephrine                                                                               |
+|  310116.0  |  Epinephrine 0.1 MG/ML Injectable Solution                                                             |
+|  310132.0  |  EPINEPHrine 1 MG/ML Injectable Solution                                                               |
+|  310133.0  |  Racepinephrine 22.5 MG/ML Inhalant Solution                                                           |
+|  314610.0  |  Racepinephrine Hydrochloride                                                                          |
+|  317361.0  |  EPINEPHrine 0.1 MG/ML                                                                                 |
+|  328314.0  |  Epinephrine 10 MG/ML                                                                                  |
+|  328316.0  |  Epinephrine 1 MG/ML                                                                                   |
+|  330545.0  |  EPINEPHrine 0.01 MG/ML                                                                                |
+|  346121.0  |  Racepinephrine 22.5 MG/ML                                                                             |
+|  361853.0  |  Racepinephrine Inhalant Solution [Asthmanefrin]                                                       |
+|  372030.0  |  Epinephrine Injectable Solution                                                                       |
+|  377281.0  |  Epinephrine Inhalant Solution                                                                         |

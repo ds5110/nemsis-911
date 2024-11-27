@@ -423,6 +423,7 @@ def fact_pcr_medication() -> pd.DataFrame:
     df.rename(mapper=mapper, axis='columns', inplace=True)
 
     #TODO: unclear if NAs need to be removed like Aaron did in computed_elements()
+    print(df.dtypes)
 
     logger.debug("exiting fact_pcr_medication()")
     return df

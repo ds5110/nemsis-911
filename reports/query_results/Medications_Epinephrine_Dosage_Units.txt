@@ -1,0 +1,22 @@
+Query:
+'''
+    select distinct m.eMedications_06 from medications m 
+    where m.eMedications_03 in (3992, 310116, 310132, 
+    317361, 328314, 328316, 330545, 372030, 377281,
+    727316, 727373, 727374, 727386, 1100194, 1233778, 1305268)
+    order by m.eMedications_06
+    
+'''
+
+|  eMedications_06  |
+|  -1.0  |      -- NULL (custom)
+|  3706001.0  | -- Grams (gms)
+|  3706003.0  | -- ?? Inches (in) ??
+|  3706005.0  | -- International Units (IU)
+|  3706007.0  | -- Keep Vein Open (kvo)
+|  3706009.0  | -- Liters (l)
+|  3706011.0  | -- may be deprecated, liters / minute (l/min fluid)
+|  3706013.0  | -- Metered Dose (MDI)
+|  3706015.0  | -- Micrograms (mcg)
+|  3706017.0  | -- Micrograms per Kilogram per Minute (mcg/kg/min)
+
