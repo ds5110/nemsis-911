@@ -1,0 +1,29 @@
+Query:
+'''
+    with cte as(
+        select e.*
+        , q.eArrest_03
+        from events e
+        left join resuscitation q on q.PcrKey = e.PcrKey
+    )
+    
+    , aggregated as (
+        select 
+        c.PcrKey
+        , count(c.eArrest_03) as NumCodes
+        , sum(case when c.eArrest_03 in ('3003007', '3003009', '3003011') then 1 
+            else 0 end) as NumNotAttemptedCodes
+        , sum(case when c.eArrest_03 in ('3003001', '3003003', '3003005') then 1 
+            else 0 end) as NumAttemptedCodes
+        , sum(case when c.eArrest_03 is null then 1 else 0 end) as NumNulls
+        from cte c
+        group by c.PcrKey
+    )
+
+    select * from aggregated
+    where NumNulls <> 0
+    and NumCodes <> 0
+    
+'''
+
+|  PcrKey  |  NumCodes  |  NumNotAttemptedCodes  |  NumAttemptedCodes  |  NumNulls  |

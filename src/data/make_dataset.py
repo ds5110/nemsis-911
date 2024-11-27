@@ -266,7 +266,7 @@ def computed_elements() -> pd.DataFrame:
     Relevant columns are PcrKey, Urbanicity, and ageinyear."""
     logger.debug("entering computed_elements()")
     fp = Path(__file__).parent.parent.parent / 'data' / 'csv' / 'ComputedElements.csv'
-    usecols = ["'PcrKey'", "'Urbanicity'", "'ageinyear'"]
+    usecols = ["'PcrKey'", "'Urbanicity'", "'ageinyear'", "'EMSDispatchCenterTimeSec'", "'EMSSystemResponseTimeMin'"]
     df = pd.read_csv(fp, usecols=usecols)
 
     # Remove quotes from column names

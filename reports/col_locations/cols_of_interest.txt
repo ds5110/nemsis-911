@@ -1,3 +1,4 @@
+eInjury_01 - table location: FACTPCRCAUSEOFINJURY.txt
 eArrest_03 - table location: FACTPCRARRESTRESUSCITATION.txt
 eMedications_03 - table location: FACTPCRMEDICATION.txt
 eMedications_05 - table location: FACTPCRMEDICATION.txt
@@ -5,3 +6,4 @@ eMedications_06 - table location: FACTPCRMEDICATION.txt
 ePatient_14 - table location: PCRPATIENTRACEGROUP.txt
 eArrest_04 - table location: FACTPCRARRESTWITNESS.txt
 eArrest_12 - table location: FACTPCRARRESTROSC.txt
+eSituation_02 - table location: Pub_PCRevents.txt

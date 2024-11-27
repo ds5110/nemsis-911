@@ -66,6 +66,21 @@ def main():
     events_df = pd.read_pickle(data_fp)
     events_df.to_sql('events', conn, if_exists = 'replace', index = False)
 
+
+
+    sql = '''
+    CREATE TABLE race(
+    PcrKey INTEGER, 
+    ePatient_14 INTEGER
+    )
+    '''
+
+    data_fp = Path(__file__).parent.parent.parent / 'data' / 'processed' / 'race.pickle'
+    race_df = pd.read_pickle(data_fp)
+    race_df.to_sql('race', conn, if_exists = 'replace', index = False)
+
+
+
     conn.commit()
     conn.close
 

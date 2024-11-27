@@ -18,7 +18,9 @@ def main():
         "eAirway_02", 
         "eAirway_03", 
         "eAirway_08", 
-        "eAirway_10"
+        "eAirway_10",
+        "eInjury_01",
+        "eSituation_02"
     ]
 
     # get all .txt files holding data, store in list

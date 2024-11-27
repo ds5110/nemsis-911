@@ -7,8 +7,8 @@ import sqlite3
 def main():
 
     # parameters
-    n_rows_save = 20
-    file_name = "Multiple_eArrest_03_Groupings_Values"
+    n_rows_save = 60
+    file_name = "Race_Final_Query"
 
     # read file from Aaron's project
     data_fp = Path(__file__).parent.parent.parent / 'data' / 'processed' / 'events.pickle'
@@ -17,11 +17,24 @@ def main():
     con = sqlite3.connect('data/NEMSIS.db')
 
     query = """
-    select e.PcrKey
-    , q.eArrest_03
-    from events e
-    left join resuscitation q on q.PcrKey = e.PcrKey
-    where e.PcrKey in ('169828180', '170223060', '170767469', '170928978', '171106211')
+    with cte as (
+        select
+        r.PcrKey
+        , count(r.ePatient_14) as NumRecords
+        from race r
+        group by r.PcrKey
+    )
+
+    , interim as (
+        select c.* from cte c
+        where c.NumRecords < 2
+    )
+    
+    select
+    i.PcrKey
+    , r.ePatient_14
+    from interim i
+    left join race r on r.PcrKey = i.PcrKey
     """
     query_df = pd.read_sql_query(query, con)
 

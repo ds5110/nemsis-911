@@ -108,6 +108,7 @@ clean:
 	find ./data/csv/ -type f -not -name '.gitignore' -delete
 	find ./data/interim/ -type f -not -name '.gitignore' -delete
 	find ./data/repaired/ -type f -not -name '.gitignore' -delete
+	rm -f data/NEMSIS.db
 	rm -f figs/*
 	rm -f reports/col_locations/cols_of_interest.txt 
 	rm -f reports/chi-square.txt

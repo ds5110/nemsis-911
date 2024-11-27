@@ -1,0 +1,38 @@
+Query:
+'''
+
+    with cte as (
+        select r.PcrKey, count(r.ePatient_14) as NumRecords
+        from race r group by r.PcrKey
+    )
+
+    select 
+    e.PcrKey
+    , cte.NumRecords
+    from events e
+    left join cte on cte.PcrKey = e.PcrKey
+    order by cte.NumRecords desc
+    
+'''
+
+|  PcrKey  |  NumRecords  |
+|  170673651  |  6  |
+|  170842685  |  6  |
+|  170985046  |  6  |
+|  171458988  |  6  |
+|  171893375  |  6  |
+|  172291577  |  6  |
+|  172446241  |  6  |
+|  172693927  |  6  |
+|  172902920  |  6  |
+|  173326936  |  6  |
+|  173328372  |  6  |
+|  173510718  |  6  |
+|  173834754  |  6  |
+|  174329509  |  6  |
+|  174329512  |  6  |
+|  174330522  |  6  |
+|  174777251  |  6  |
+|  174918544  |  6  |
+|  175342763  |  6  |
+|  176162116  |  6  |

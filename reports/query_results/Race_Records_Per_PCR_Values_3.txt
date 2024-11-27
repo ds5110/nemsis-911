@@ -1,0 +1,32 @@
+Query:
+'''
+    with cte as (
+        select 
+        e.PcrKey
+        , r.ePatient_14 as Race
+        from events e 
+        left join race r on r.PcrKey = e.PcrKey
+    )
+    , aggregated as (
+        select
+        a.PcrKey
+        , count(a.Race) as NumRaceRecords
+        from cte a
+        group by a.PcrKey
+    )
+    select 
+    q.NumRaceRecords
+    , count(q.PcrKey) as NumInstances
+    from aggregated q
+    group by q.NumRaceRecords
+    
+'''
+
+|  NumRaceRecords  |  NumInstances  |
+|  0  |  43076  |
+|  1  |  245808  |
+|  2  |  1398  |
+|  3  |  31  |
+|  4  |  7  |
+|  5  |  6  |
+|  6  |  233  |
