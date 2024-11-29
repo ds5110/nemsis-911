@@ -15,7 +15,7 @@ def main():
     df = cardiac_arrest_case_definition_pcr()
 
     # figure out which rows to keep from the original
-    event_fp = Path(__file__).parent.parent.parent / 'data' / 'csv' / 'Pub_PCRevents.csv'
+    event_fp = Path(__file__).parent.parent / 'data' / 'csv' / 'Pub_PCRevents.csv' #.parent
     with open(event_fp) as f:
         num_rows = sum(1 for _ in f)
     all_rows = np.arange(1, num_rows)
@@ -46,28 +46,28 @@ def main():
     arrest_rosc_df = fact_pcr_arrest_rosc()
     arrest_rosc_df = arrest_rosc_df.replace(to_replace=[7701001, 7701003, 7701005], value=pd.NA)  # replace NEMSIS NOT values
     logger.debug("Save arrest_rosc.pickle")
-    save_path = Path(__file__).parent.parent.parent / 'data' / 'processed' / 'arrest_rosc.pickle'
+    save_path = Path(__file__).parent.parent / 'data' / 'processed' / 'arrest_rosc.pickle' #.parent
     arrest_rosc_df.to_pickle(path=save_path)
     #events_df = events_df.merge(arrest_rosc_df, on='PcrKey', suffixes=(None, '_y'))
 
     pcr_arrest_witness = fact_pcr_arrest_witness()
     pcr_arrest_witness = pcr_arrest_witness.replace(to_replace=[7701001, 7701003, 7701005], value=pd.NA)  # replace NEMSIS NOT values
     logger.debug("Save arrest_witness.pickle")
-    save_path = Path(__file__).parent.parent.parent / 'data' / 'processed' / 'arrest_witness.pickle'
+    save_path = Path(__file__).parent.parent / 'data' / 'processed' / 'arrest_witness.pickle' #.parent
     pcr_arrest_witness.to_pickle(path=save_path)
     #events_df = events_df.merge(pcr_arrest_witness, on='PcrKey', suffixes=(None, '_y'))
 
     medications_df = fact_pcr_medication() 
     medications_df = medications_df.replace(to_replace=[7701001, 7701003, 7701005], value=pd.NA)  # replace NEMSIS NOT values
     logger.debug("Save medications.pickle")
-    save_path = Path(__file__).parent.parent.parent / 'data' / 'processed' / 'medications.pickle'
+    save_path = Path(__file__).parent.parent / 'data' / 'processed' / 'medications.pickle' #.parent
     medications_df.to_pickle(path=save_path)
     #events_df = events_df.merge(medications_df, on='PcrKey', suffixes=(None, '_y'))
 
     race_df = pcr_patient_race_group()
     race_df = race_df.replace(to_replace=[7701001, 7701003, 7701005], value=pd.NA)  # replace NEMSIS NOT values
     logger.debug("Save race.pickle")
-    save_path = Path(__file__).parent.parent.parent / 'data' / 'processed' / 'race.pickle'
+    save_path = Path(__file__).parent.parent / 'data' / 'processed' / 'race.pickle' #.parent
     race_df.to_pickle(path=save_path)
     #events_df = events_df.merge(race_df, on='PcrKey', suffixes=(None, '_y'))
 
@@ -75,7 +75,7 @@ def main():
     resus_df = fact_pcr_arrest_resuscitation()
     resus_df = resus_df.replace(to_replace=[7701001, 7701003, 7701005], value=pd.NA)  # replace NEMSIS NOT values
     logger.debug("Save pcr_arrest_resuscitation.pickle")
-    save_path = Path(__file__).parent.parent.parent / 'data' / 'processed' / 'pcr_arrest_resuscitation.pickle'
+    save_path = Path(__file__).parent.parent / 'data' / 'processed' / 'pcr_arrest_resuscitation.pickle' #.parent
     resus_df.to_pickle(path=save_path)
 
 
@@ -84,7 +84,7 @@ def main():
     events_df = events_df.convert_dtypes()
     events_df = events_df.replace(to_replace=[7701001, 7701003, 7701005], value=pd.NA)  # replace NEMSIS NOT values
     logger.debug("Save events.pickle")
-    save_path = Path(__file__).parent.parent.parent / 'data' / 'processed' / 'events.pickle'
+    save_path = Path(__file__).parent.parent / 'data' / 'processed' / 'events.pickle' #.parent
     events_df.to_pickle(path=save_path)
     logger.info("Finished make_dataset.py")
 
@@ -182,7 +182,7 @@ def events_df_filtered_rows(skip_rows: set[int]) -> pd.DataFrame:
     Keyword arguments:
     skip_rows: array of rows to skip. (0-indexed, starting with the header)
     """
-    fp = Path(__file__).parent.parent.parent / 'data' / 'csv' / 'Pub_PCRevents.csv'
+    fp = Path(__file__).parent.parent / 'data' / 'csv' / 'Pub_PCRevents.csv' #.parent
 
     logger.info("Reading only cardiac arrest rows from Pub_PCRevents.csv. Takes 5-10 minutes, there's ~51MM rows.")
     text_file_reader = pd.read_csv(fp,
@@ -265,7 +265,7 @@ def computed_elements() -> pd.DataFrame:
 
     Relevant columns are PcrKey, Urbanicity, and ageinyear."""
     logger.debug("entering computed_elements()")
-    fp = Path(__file__).parent.parent.parent / 'data' / 'csv' / 'ComputedElements.csv'
+    fp = Path(__file__).parent.parent / 'data' / 'csv' / 'ComputedElements.csv' #.parent
     usecols = ["'PcrKey'", "'Urbanicity'", "'ageinyear'", "'EMSDispatchCenterTimeSec'", "'EMSSystemResponseTimeMin'"]
     df = pd.read_csv(fp, usecols=usecols)
 
@@ -285,7 +285,7 @@ def computed_elements() -> pd.DataFrame:
 
 def _get_interim_path() -> Path:
     """Return an absolute path to the directory PROJECT_ROOT/data/interim."""
-    return Path(__file__).parent.parent.parent / 'data' / 'interim'
+    return Path(__file__).parent.parent / 'data' / 'interim' #.parent
 
 
 def read_nemsis_file_to_df(filepath: Path, *, usecols: str | list[str] | None = None) -> pd.DataFrame:
@@ -347,15 +347,13 @@ def fact_pcr_arrest_rosc() -> pd.DataFrame:
     Relevant columns are PcrKey, eArrest_12
     """
     logger.debug("entering fact_pcr_arrest_rosc()")
-    fp = Path(__file__).parent.parent.parent / 'data' / 'csv' / 'FACTPCRARRESTROSC.csv'
+    fp = Path(__file__).parent.parent / 'data' / 'csv' / 'FACTPCRARRESTROSC.csv' #.parent
     usecols = ["'PcrKey'", "'eArrest_12'"]
     df = pd.read_csv(fp, usecols = usecols)
 
     # Remove quotes from column names
     mapper = {quoted_col: _unquote_column_names(quoted_col) for quoted_col in usecols}
     df.rename(mapper=mapper, axis='columns', inplace=True)
-
-    #TODO: unclear if NAs need to be removed like Aaron did in computed_elements()
 
     logger.debug("exiting fact_pcr_arrest_rosc()")
     return df
@@ -368,15 +366,13 @@ def fact_pcr_arrest_resuscitation() -> pd.DataFrame:
     Relevant columns are PcrKey, eArrest_12
     """
     logger.debug("entering fact_pcr_arrest_resuscitation()")
-    fp = Path(__file__).parent.parent.parent / 'data' / 'csv' / 'FACTPCRARRESTRESUSCITATION.csv'
+    fp = Path(__file__).parent.parent / 'data' / 'csv' / 'FACTPCRARRESTRESUSCITATION.csv' #.parent
     usecols = ["'PcrKey'", "'eArrest_03'"] 
     df = pd.read_csv(fp, usecols = usecols)
 
     # Remove quotes from column names
     mapper = {quoted_col: _unquote_column_names(quoted_col) for quoted_col in usecols}
     df.rename(mapper=mapper, axis='columns', inplace=True)
-
-    #TODO: unclear if NAs need to be removed like Aaron did in computed_elements()
 
     logger.debug("exiting fact_pcr_arrest_resuscitation()")
     return df
@@ -390,15 +386,13 @@ def fact_pcr_arrest_witness() -> pd.DataFrame:
     Relevant columns are 'PcrKey', 'eArrest_04'
     """
     logger.debug("entering fact_pcr_arrest_witness()")
-    fp = Path(__file__).parent.parent.parent / 'data' / 'csv' / 'FACTPCRARRESTWITNESS.csv'
+    fp = Path(__file__).parent.parent / 'data' / 'csv' / 'FACTPCRARRESTWITNESS.csv' #.parent 
     usecols = ["'PcrKey'", "'eArrest_04'"]
     df = pd.read_csv(fp, usecols = usecols)
 
     # Remove quotes from column names
     mapper = {quoted_col: _unquote_column_names(quoted_col) for quoted_col in usecols}
     df.rename(mapper=mapper, axis='columns', inplace=True)
-
-    #TODO: unclear if NAs need to be removed like Aaron did in computed_elements()
 
     logger.debug("exiting fact_pcr_arrest_witness()")
     return df
@@ -412,7 +406,7 @@ def fact_pcr_medication() -> pd.DataFrame:
                         'eMedications_05', 'eMedications_06'
     """
     logger.debug("entering fact_pcr_medication()")
-    fp = Path(__file__).parent.parent.parent / 'data' / 'csv' / 'FACTPCRMEDICATION.csv'
+    fp = Path(__file__).parent.parent / 'data' / 'csv' / 'FACTPCRMEDICATION.csv' #.parent 
     usecols = ["'PcrKey'", "'eMedications_03'", "'eMedications_03Descr'", 
         "'eMedications_05'", "'eMedications_06'"
     ]
@@ -421,9 +415,6 @@ def fact_pcr_medication() -> pd.DataFrame:
     # Remove quotes from column names
     mapper = {quoted_col: _unquote_column_names(quoted_col) for quoted_col in usecols}
     df.rename(mapper=mapper, axis='columns', inplace=True)
-
-    #TODO: unclear if NAs need to be removed like Aaron did in computed_elements()
-    print(df.dtypes)
 
     logger.debug("exiting fact_pcr_medication()")
     return df
@@ -436,15 +427,13 @@ def pcr_patient_race_group() -> pd.DataFrame:
     Relevant columns are 'PcrKey', 'ePatient_14'
     """
     logger.debug("entering pcr_patient_race_group()")
-    fp = Path(__file__).parent.parent.parent / 'data' / 'csv' / 'PCRPATIENTRACEGROUP.csv'
+    fp = Path(__file__).parent.parent / 'data' / 'csv' / 'PCRPATIENTRACEGROUP.csv' #.parent
     usecols = ["'PcrKey'", "'ePatient_14'"]
     df = pd.read_csv(fp, usecols = usecols)
 
     # Remove quotes from column names
     mapper = {quoted_col: _unquote_column_names(quoted_col) for quoted_col in usecols}
     df.rename(mapper=mapper, axis='columns', inplace=True)
-
-    #TODO: unclear if NAs need to be removed like Aaron did in computed_elements()
 
     logger.debug("exiting pcr_patient_race_group()")
     return df

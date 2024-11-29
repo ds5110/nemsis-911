@@ -11,7 +11,7 @@ def main():
     file_name = "Medications_Epinephrine_CTE_Test"
 
     # read file from Aaron's project
-    data_fp = Path(__file__).parent.parent.parent / 'data' / 'processed' / 'events.pickle'
+    data_fp = Path(__file__).parent.parent / 'data' / 'processed' / 'events.pickle' #.parent
     df = pd.read_pickle(data_fp)
 
     con = sqlite3.connect('data/NEMSIS.db')

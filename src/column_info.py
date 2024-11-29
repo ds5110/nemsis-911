@@ -3,7 +3,7 @@ from pathlib import Path
 
 def main():
     # read file from Aaron's project
-    data_fp = Path(__file__).parent.parent.parent / 'data' / 'processed' / 'events_renamed.pickle'
+    data_fp = Path(__file__).parent.parent / 'data' / 'processed' / 'events_renamed.pickle' #.parent
     df = pd.read_pickle(data_fp)
 
     # get the columns, and total # of rows

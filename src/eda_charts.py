@@ -7,7 +7,7 @@ import numpy as np
 
 def main():
     # read file from Aaron's project (all available data)
-    data_fp = Path(__file__).parent.parent.parent / 'data' / 'processed' / 'events_renamed.pickle'
+    data_fp = Path(__file__).parent.parent / 'data' / 'processed' / 'events_renamed.pickle' #.parent
     df = pd.read_pickle(data_fp)
 
     # replace null values for age in year, then convert to numeric (float for None types)

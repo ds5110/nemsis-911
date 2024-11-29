@@ -41,32 +41,38 @@ unzipped_csvs = ./data/interim/ComputedElements.txt \
                 ./data/interim/PCRVITALGLASGOWQUALIFIERGROUP.txt \
                 ./data/interim/Pub_PCRevents.txt
 
-build: ./reports/chi-square.txt ./reports/preliminary_eda.txt eda_charts col_headers find_cols setup_db
+build: ./reports/chi-square.txt ./reports/preliminary_eda.txt eda_charts calculate_epinephrine_usage col_headers find_cols 
 
 ./reports/chi-square.txt: ./data/processed/events_renamed.pickle
-	python ./src/data/analysis.py
+	python ./src/analysis.py
 
 ./reports/preliminary_eda.txt: ./data/processed/events_renamed.pickle
-	python ./src/data/column_info.py
+	python ./src/column_info.py
 
 eda_charts: ./data/processed/events_renamed.pickle
-	python ./src/data/eda_charts.py
+	python ./src/eda_charts.py
+
+calculate_epinephrine_usage: setup_db expand_events
+	python ./src/calculate_epinephrine_usage.py
+
+expand_events:
+	python ./src/expand_dataset.py
 
 col_headers: ./data/repaired/ASCII\ 2022_repaired.zip
-	python ./src/data/nemsis_text_format.py
+	python ./src/nemsis_text_format.py
 
 find_cols: col_headers
-	python ./src/data/nemsis_find_cols.py
+	python ./src/nemsis_find_cols.py
 
 setup_db:
-	python ./src/data/db_setup.py
+	python ./src/db_setup.py
 
 ./data/processed/events_renamed.pickle: ./data/processed/events.pickle
-	python ./src/data/rename_columns.py
+	python ./src/rename_columns.py
 
 # Convert the CSV to a pickle of a pandas dataframe
 ./data/processed/events.pickle: ./data/csv/Pub_PCRevents.csv ./data/csv/ComputedElements.csv ./data/csv/FACTPCRMEDICATION.csv ./data/csv/PCRPATIENTRACEGROUP.csv ./data/csv/FACTPCRARRESTWITNESS.csv ./data/csv/FACTPCRARRESTROSC.csv ./data/csv/FACTPCRARRESTRESUSCITATION.csv
-	python ./src/data/make_dataset.py
+	python ./src/make_dataset.py
 
 # Pub_PCRevents.txt uses a multi-character delimiter, which means pandas.read_csv() must use the python parsing engine.
 # This raises an error when using the chunksize argument and a callable skiprows argument together. Converting the

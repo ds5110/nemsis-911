@@ -18,7 +18,7 @@ def main():
     )
     '''
 
-    data_fp = Path(__file__).parent.parent.parent / 'data' / 'processed' / 'pcr_arrest_resuscitation.pickle'
+    data_fp = Path(__file__).parent.parent / 'data' / 'processed' / 'pcr_arrest_resuscitation.pickle' #.parent
     resus_df = pd.read_pickle(data_fp)
     resus_df.to_sql('resuscitation', conn, if_exists = 'replace', index = False)
 
@@ -64,7 +64,7 @@ def main():
     ageinyear INTEGER
     )
     '''
-    data_fp = Path(__file__).parent.parent.parent / 'data' / 'processed' / 'events.pickle'
+    data_fp = Path(__file__).parent.parent / 'data' / 'processed' / 'events.pickle' #.parent
     events_df = pd.read_pickle(data_fp)
     events_df.to_sql('events', conn, if_exists = 'replace', index = False)
 
@@ -77,7 +77,7 @@ def main():
     )
     '''
 
-    data_fp = Path(__file__).parent.parent.parent / 'data' / 'processed' / 'race.pickle'
+    data_fp = Path(__file__).parent.parent / 'data' / 'processed' / 'race.pickle' #.parent
     race_df = pd.read_pickle(data_fp)
     race_df.to_sql('race', conn, if_exists = 'replace', index = False)
 
@@ -92,7 +92,7 @@ def main():
     eMedications_06 INTEGER
     )
     '''
-    data_fp = Path(__file__).parent.parent.parent / 'data' / 'processed' / 'medications.pickle'
+    data_fp = Path(__file__).parent.parent / 'data' / 'processed' / 'medications.pickle' #.parent
     med_df = pd.read_pickle(data_fp)
 
     print(med_df.dtypes)

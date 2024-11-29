@@ -4,7 +4,7 @@ import pandas as pd
 
 def main():
     """Map important variables to categorical variables and give them meaningful names."""
-    fp = Path(__file__).parent.parent.parent / 'data' / 'processed' / 'events.pickle'
+    fp = Path(__file__).parent.parent / 'data' / 'processed' / 'events.pickle' #.parent
     df = pd.read_pickle(fp)
 
     # The field "eArrest_18" is "End of EMS Cardiac Arrest Event". Map to a categorical variable.
@@ -45,7 +45,7 @@ def main():
     df.rename(columns={"eArrest_05": "CPR_Care_Provided_Prior_to_EMS_Arrival"}, inplace=True)
 
     # Save as a new pickle file.
-    save_path = Path(__file__).parent.parent.parent / 'data' / 'processed' / 'events_renamed.pickle'
+    save_path = Path(__file__).parent.parent / 'data' / 'processed' / 'events_renamed.pickle' #.parent
     df.to_pickle(path=save_path)
 
 

@@ -222,8 +222,8 @@ def main():
 
     # -------------------------------------- Saving Final Pickle File with Cleaned Data -------------------------------------- #
 
-    save_path = Path(__file__).parent.parent.parent / 'data' / 'processed' / 'expanded_events.pickle'
-    df.to_pickle(path=save_path)
+    save_path = Path(__file__).parent.parent / 'data' / 'processed' / 'expanded_events.pickle' #.parent 
+    df.to_pickle(path=save_path) 
 
 
 if __name__ == "__main__":
