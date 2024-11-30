@@ -77,13 +77,41 @@ Utilities:
     
 ```
 
+## Review of Epinephrine Administered
+After filtering down to the relevant PCR cases (see `constants/filter_criteria.py`), we calculated some figures from a table in the paper by Peters et al. 
+Some of these figures are close percentage wise to the paper's published numbers. However, because the filter criteria described by the paper was vague, 
+our main focus for the project became clearly defining a set of filtering constants that are used while setting up the database, that way future projects
+can review our filter criteria, and modify or conduct additional analysis as needed.
+
+```
+All Incidents - 95735 
+    	Rural - 5590 (5.84%)
+    	Urban / Suburban - 90145 (94.16%)
+    
+Age in Years, mean (SD) - 67.16 (15.55)
+    	Rural - 66.42 (14.39)
+    	Urban / Suburban - 67.2 (15.62)
+    
+Male - 59823 (62.62%)
+    	Rural - 3657 (65.63%)
+    	Urban / Suburban - 56166 (62.44%)
+    
+Epinephrine Administered - Combined
+    69505 cases with epinephrine administered / 95735 total cases = 72.6%
+    
+Epinephrine Administered - Rural 
+    3918 cases with epinephrine administered / 5590 total cases = 70.09%
+    
+Epinephrine Administered - Urban / Suburban
+    65587 cases with epinephrine administered / 90145 total cases = 72.76%
+```
+
 ## EDA
 Links for our EDA can be found below:
 - [Preliminary EDA on the Data Available](./markdown/preliminary_eda.md): includes the shape of the dataset, datatypes of each column, number of nulls in each column, and information from NEMSIS' data dictionary about what each column represents. 
 - [Additional EDA with Charts](./markdown/EDA.md)
 
 For information about our proposed project, see [Proposed Project Information](./project.md).
-
 
 ## References
 Referenced files from Aaron Fihn's initial project include:
