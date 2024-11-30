@@ -83,6 +83,14 @@ clean:
 	rm -f reports/text_file_headers/*
 	rm -f reports/epinephrine_usage.txt
 
+rebuild_database:
+	rm -f data/NEMSIS_PUB.db
+	python ./src/create_NEMSIS_db.py
+	python ./src/load_data_NEMSIS_db.py
+
+reselect_events:
+	python ./src/filter_primary_NEMSIS_cases.py
+
 environment:
 	conda env create -n project-duggani -f environment.yml
 # conda activate project-duggani

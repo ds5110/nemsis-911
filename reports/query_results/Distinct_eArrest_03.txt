@@ -1,16 +1,15 @@
 Query:
 '''
-    select distinct
-    q.eArrest_03
-    from resuscitation q 
-    
+    select distinct eArrest_03
+    from FACTPCRARRESTRESUSCITATION
 '''
 
 |  eArrest_03  |
-|  nan  |
-|  3003005.0  |
-|  3003003.0  |
-|  3003007.0  |
-|  3003001.0  |
-|  3003009.0  |
-|  3003011.0  |
+|  7701003  |
+|  7701001  |
+|  3003003  |
+|  3003005  |
+|  3003007  |
+|  3003009  |
+|  3003001  |
+|  3003011  |

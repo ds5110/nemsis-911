@@ -1,6 +1,6 @@
 Query:
 '''
-    select distinct m.eMedications_06 from medications m 
+    select distinct m.eMedications_06 from FACTPCRMEDICATION m 
     where m.eMedications_03 in (3992, 310116, 310132, 
     317361, 328314, 328316, 330545, 372030, 377281,
     727316, 727373, 727374, 727386, 1100194, 1233778, 1305268)
@@ -9,14 +9,32 @@ Query:
 '''
 
 |  eMedications_06  |
-|  -1.0  |      -- NULL (custom)
-|  3706001.0  | -- Grams (gms)
-|  3706003.0  | -- ?? Inches (in) ??
-|  3706005.0  | -- International Units (IU)
-|  3706007.0  | -- Keep Vein Open (kvo)
-|  3706009.0  | -- Liters (l)
-|  3706011.0  | -- may be deprecated, liters / minute (l/min fluid)
-|  3706013.0  | -- Metered Dose (MDI)
-|  3706015.0  | -- Micrograms (mcg)
-|  3706017.0  | -- Micrograms per Kilogram per Minute (mcg/kg/min)
+|  3706001  | -- Grams (gms)
+|  3706003  | -- Inches (in) 
+|  3706005  | -- International Units (IU)
+|  3706007  | -- Keep Vein Open (kvo)
+|  3706009  | -- Liters (l)
+|  3706011  | -- may be deprecated, liters / minute (l/min fluid)
+|  3706013  | -- Metered Dose (MDI)
+|  3706015  | -- Micrograms (mcg)
+|  3706017  | -- Micrograms per Kilogram per Minute (mcg/kg/min)
+|  3706019  | -- Milliequivalents (mEq)
+|  3706021  | -- Milligrams (mg)
+|  3706023  | -- Milligrams per Kilogram Per Minute (mg/kg/min)
+|  3706025  | -- Milliliters (ml)
+|  3706027  | -- Milliliters per Hour (ml/hr)
+|  3706029  | -- Other
+|  3706031  | -- Centimeters (cm)
+|  3706033  | -- Drops (gtts)
+|  3706035  | -- Liters Per Minute (LPM [gas])
+|  3706037  | -- Micrograms per Minute (mcg/min)
+|  3706039  | -- Milligrams per Kilogram (mg/kg)
+|  3706041  | -- Milligrams per Minute (mg/min)
+|  3706045  | -- Units per Hour (units/hr)
+|  3706047  | -- Micrograms per Kilogram (mcg/kg)
+|  3706049  | -- Units
+|  3706051  | -- Units per Kilogram per Hour (units/kg/hr)
+|  3706053  | -- Units per Kilogram (units/kg)
+|  7701001  | -- Not Applicable
+|  7701003  | -- Not Recorded
 

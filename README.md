@@ -24,20 +24,25 @@ Utilities:
 ## Makefile Instructions for Reproducibility
 1) **make environment** - to create a conda environment named `project-duggani` with the required dependencies, from `environment.yml`.
 1) **conda activate project-duggani** to activate the conda environment.
+1) Drop the zipped NEMSIS dataset into `data/raw/`.
 1) **make** - running the `make` command will process all data from the ZIP file into txt files, create an sqlite database, filter a prepared dataset using the filters defined in `constants`, and then run EDA & epinephrine analysis files. 
 
 **Optional Makefile Commands**
-* **make query** may be used to run the `src/query.py` file, which saves the top few results of a database query into the `reports/query_results` directory. *Note: change the query text and parameters within the python file for subsequent queries*
+* **make query** may be used to run the `src/query.py` file, which saves the top few results of a database query into the `reports/query_results` directory. *Note: change the query text and parameters within the python file for subsequent queries*. For more information on how this works, see [here](./markdown/Query_Exploration.md)
 * **make clean** will remove all data text files, the NEMSIS_PUB.db object, and the generated items in `figs` and `reports` directories
+* **make rebuild_database** will remove the NEMSIS_PUB.db file, and rebuild the database. This option exists in case you update the constant files, and want to rebuild the databse without unpacking the text files again.
+* **make reselect_events** will re-run the query in `src/filter_primary_NEMSIS_cases.py`, and update the `data/processed/selected_events.pickle`, for when the filter criteria in constants are updated and the data needs to be refreshed.
 
 ## Project Layout
 ```
-├── environment.yml            <- Conda environment file
+├── environment.yml            <- yml file with dependencies for conda 
 ├── Makefile                   <- Makefile that extracts processed data from original zip file
-├── Plan.md                    <- Detailed project plan including milestones and timelines
-├── Proposal.md                <- Project description, intended approach, and EDA support for feasibility
 ├── README.md                  <- You are here
 ├── Terms.md                   <- Mandatory disclosure required by the NEMSIS dataset Terms of Use
+├── markdown                   <- this directory contains additional markdown files for reference
+│   ├── Proposal.md            <- Project description, intended approach, and EDA support for feasibility
+│   ├── Plan.md                <- Project plan and timeline.
+│   ├── etc...                 <- Additional markdown files include EDA resuls, detailed Makefile instructions, etc.
 ├── data
 │   ├── csv                    <- A relic from Aaron Fihn's project, may be used to store csv files for easier parsing, if desired.
 │   ├── interim                <- The unzipped text files
@@ -57,7 +62,7 @@ Utilities:
 │   ├── epinephrine_usage.txt  <- Stores some summary statistics of the filtered data, specifically evaluating the % of cases with epinephrine administered.
 │   └── preliminary_eda.txt    <- Stores summary data of each column in the prepared dataset, including # of nulls, unique values, etc.
 │
-└── src                        <- Source code
+└── src                                <- Source code
     ├── calculate_epinephrine_usage.py <- This script calculates summary statistics around epinephrine usage and urbanicity, to compare to the Peters et al. paper.
     ├── column_info.py                 <- For preliminary EDA, reports on column information in the filtered dataset, e.g., num nulls, unique vals, etc.
     ├── create_NEMSIS_db.py            <- Creates the NEMSIS_PUB.db sqlite database object
@@ -113,9 +118,18 @@ Links for our EDA can be found below:
 
 For information about our proposed project, see [Proposed Project Information](./project.md).
 
+## Additional Resources
+- [Aaron Fihn's Readme](./markdown/Aaron-Fihn_README.md) - *for reference to Aaron's project*
+- [Aaron Fihn's Makefile Information](./markdown/Aaron-Fihn_Makefile_overview.md) - *note: this project's Makefile was adapted from Aaron Fihn's, so not all steps apply, but it is a good reference for seeing how he dealt with the data challenges.*
+- [Current Makefile Information](./markdown/Current_Makefile_overview.md) - this will outline the steps of our current Makefile, showing where we modified Aaron's approach
+- [Project Proposal](./markdown/Proposal.md)
+- [Project Plan](./markdown/Plan.md)
+- [Project Story](./markdown/project.md)
+- [Preliminary EDA](./markdown/preliminary_eda.md) - *includes information about the columns in the filtered dataset*
+- [Visual EDA](./markdown/EDA.md) - *includes some visualizations of patient age and urbanicity in the filtered dataset*
+- [Query Exploration](./markdown/Query_Exploration.md) - *shows some questions that were answered while querying the NEMSIS_PUB.db*
+
 ## References
 Referenced files from Aaron Fihn's initial project include:
-- [Aaron Fihn's Readme](./markdown/README_Aaron-Fihn.md)
-- [Makefile Information](./markdown/Makefile_overview.md)
 - **TODO** - cite Peters et al. paper. 
 - **TODO** - formally cite Aaron Fihn's project repo

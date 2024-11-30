@@ -7,7 +7,7 @@ Query:
         , m.eMedications_03Descr 
         , m.eMedications_05
         , m.eMedications_06
-        from medications m 
+        from FACTPCRMEDICATION m 
         where m.eMedications_03 in (3992, 310116, 310132, 317361, 328314, 328316, 330545, 372030, 377281)
     )
 
@@ -16,23 +16,33 @@ Query:
 '''
 
 |  PcrKey  |  eMedications_03  |  eMedications_03Descr  |  eMedications_05  |  eMedications_06  |
-|  156309326  |  328316.0  |  Epinephrine 1 MG/ML                                                                                   |  0.3   |  3706021     |
-|  169602546  |  317361.0  |  EPINEPHrine 0.1 MG/ML                                                                                 |  1   |  3706021     |
-|  169602546  |  317361.0  |  EPINEPHrine 0.1 MG/ML                                                                                 |  1   |  3706021     |
-|  169602546  |  317361.0  |  EPINEPHrine 0.1 MG/ML                                                                                 |  1   |  3706021     |
-|  169602546  |  317361.0  |  EPINEPHrine 0.1 MG/ML                                                                                 |  1   |  3706021     |
-|  169602879  |  330545.0  |  EPINEPHrine 0.01 MG/ML                                                                                |  0.05   |  3706015     |
-|  169602879  |  3992.0  |  Epinephrine                                                                                           |  0.05   |  7701003     |
-|  169602966  |  317361.0  |  EPINEPHrine 0.1 MG/ML                                                                                 |  5   |  3706021     |
-|  169602966  |  317361.0  |  EPINEPHrine 0.1 MG/ML                                                                                 |  5   |  3706021     |
-|  169602966  |  317361.0  |  EPINEPHrine 0.1 MG/ML                                                                                 |  5   |  3706021     |
-|  169602966  |  317361.0  |  EPINEPHrine 0.1 MG/ML                                                                                 |  5   |  3706021     |
-|  169602985  |  317361.0  |  EPINEPHrine 0.1 MG/ML                                                                                 |  1   |  3706021     |
-|  169603095  |  3992.0  |  Epinephrine                                                                                           |  3   |  3706021     |
-|  169605076  |  317361.0  |  EPINEPHrine 0.1 MG/ML                                                                                 |  1   |  3706021     |
-|  169605076  |  317361.0  |  EPINEPHrine 0.1 MG/ML                                                                                 |  1   |  3706021     |
-|  169605076  |  317361.0  |  EPINEPHrine 0.1 MG/ML                                                                                 |  1   |  3706021     |
-|  169605076  |  317361.0  |  EPINEPHrine 0.1 MG/ML                                                                                 |  1   |  3706021     |
-|  169605462  |  328316.0  |  Epinephrine 1 MG/ML                                                                                   |  1   |  3706021     |
-|  169605462  |  328316.0  |  Epinephrine 1 MG/ML                                                                                   |  1   |  3706021     |
-|  169605462  |  328316.0  |  Epinephrine 1 MG/ML                                                                                   |  1   |  3706021     |
+|  156309326  |  328316  |  Epinephrine 1 MG/ML  |  0.3  |  3706021  |
+|  169602546  |  317361  |  EPINEPHrine 0.1 MG/ML  |  1  |  3706021  |
+|  169602546  |  317361  |  EPINEPHrine 0.1 MG/ML  |  1  |  3706021  |
+|  169602546  |  317361  |  EPINEPHrine 0.1 MG/ML  |  1  |  3706021  |
+|  169602546  |  317361  |  EPINEPHrine 0.1 MG/ML  |  1  |  3706021  |
+|  169602879  |  330545  |  EPINEPHrine 0.01 MG/ML  |  0.05  |  3706015  |
+|  169602879  |  3992  |  Epinephrine  |  0.05  |  7701003  |
+|  169602966  |  317361  |  EPINEPHrine 0.1 MG/ML  |  5  |  3706021  |
+|  169602966  |  317361  |  EPINEPHrine 0.1 MG/ML  |  5  |  3706021  |
+|  169602966  |  317361  |  EPINEPHrine 0.1 MG/ML  |  5  |  3706021  |
+|  169602966  |  317361  |  EPINEPHrine 0.1 MG/ML  |  5  |  3706021  |
+|  169602985  |  317361  |  EPINEPHrine 0.1 MG/ML  |  1  |  3706021  |
+|  169603095  |  3992  |  Epinephrine  |  3  |  3706021  |
+|  169605076  |  317361  |  EPINEPHrine 0.1 MG/ML  |  1  |  3706021  |
+|  169605076  |  317361  |  EPINEPHrine 0.1 MG/ML  |  1  |  3706021  |
+|  169605076  |  317361  |  EPINEPHrine 0.1 MG/ML  |  1  |  3706021  |
+|  169605076  |  317361  |  EPINEPHrine 0.1 MG/ML  |  1  |  3706021  |
+|  169605462  |  328316  |  Epinephrine 1 MG/ML  |  1  |  3706021  |
+|  169605462  |  328316  |  Epinephrine 1 MG/ML  |  1  |  3706021  |
+|  169605462  |  328316  |  Epinephrine 1 MG/ML  |  1  |  3706021  |
+|  169605462  |  328316  |  Epinephrine 1 MG/ML  |  1  |  3706021  |
+|  169605462  |  328316  |  Epinephrine 1 MG/ML  |  1  |  3706021  |
+|  169605462  |  328316  |  Epinephrine 1 MG/ML  |  1  |  3706021  |
+|  169605462  |  328316  |  Epinephrine 1 MG/ML  |  1  |  3706021  |
+|  169605872  |  328316  |  Epinephrine 1 MG/ML  |  0.3  |  3706021  |
+|  169605944  |  317361  |  EPINEPHrine 0.1 MG/ML  |  1  |  3706021  |
+|  169605944  |  317361  |  EPINEPHrine 0.1 MG/ML  |  1  |  3706021  |
+|  169605944  |  317361  |  EPINEPHrine 0.1 MG/ML  |  1  |  3706021  |
+|  169606019  |  328316  |  Epinephrine 1 MG/ML  |  0.3  |  3706021  |
+|  169606141  |  317361  |  EPINEPHrine 0.1 MG/ML  |  1  |  3706021  |

@@ -1,7 +1,7 @@
 Query:
 '''
     select distinct m.eMedications_03, m.eMedications_03Descr from medications m 
-    where m.eMedications_03Descr like '% epinephrine%'
+    where m.eMedications_03Descr like '%epinephrine%'
     order by m.eMedications_03
     
 '''
