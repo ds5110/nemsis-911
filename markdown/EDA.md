@@ -5,7 +5,7 @@ To start investigating some variables in the dataset, we wanted to gain a sense 
 
 <table>
 <tr>
-<td><img src="./figs/patient-counts-by-urbanicity.png" alt="Full Dataset"/></td>
+<td><img src="../figs/patient-counts-by-urbanicity.png" alt="Full Dataset"/></td>
 <td><img src="./figs/fig_samples/patient-counts-by-urbanicity_sample.png" alt="Sample Dataset"/></td>
 </tr>
 </table>
