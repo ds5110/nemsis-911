@@ -130,6 +130,12 @@ For information about our proposed project, see [Proposed Project Information](.
 - [Query Exploration](./markdown/Query_Exploration.md) - *shows some questions that were answered while querying the NEMSIS_PUB.db*
 
 ## References
-Referenced files from Aaron Fihn's initial project include:
-- **TODO** - cite Peters et al. paper. 
-- **TODO** - formally cite Aaron Fihn's project repo
+
+* Fihn, A. (Accessed 2024, October 1). *project-aaronfihn*. [GitHub Repository]. *Northeastern University*. https://github.com/ds5500/project-aaronfihn
+
+* Gregory A. Peters, Alexander J. Ordoobadi, Ashish R. Panchal & Rebecca
+E. Cash (2023). *Differences in Out-of-Hospital Cardiac Arrest Management and Outcomes across Urban, Suburban, and Rural Settings*. Prehospital Emergency Care, 27:2, 162-169. https://doi.org/10.1080/10903127.2021.2018076
+
+* [NEMSIS]. (Accessed 2024, October 1). *NEMSIS Data Dictionary. NHTSA v3.4.0. Build 200910. EMS Data Standard.* [Data Dictionary]. *NEMSIS*. https://nemsis.org/media/nemsis_v3/release-3.4.0/DataDictionary/PDFHTML/DEMEMS/index.html
+
+* [NEMSIS]. (Accessed 2024, October 1). *NEMSIS V3 Case Definition. Cardiac Arrest* [Definition of Cardiac Arrest Events]. *NEMSIS*. https://nemsis.org/media/nemsis_v3/master/CaseDefinitions/CardiacArrest.pdf
