@@ -6,4 +6,5 @@ dependencies:
   - scikit-learn
   - seaborn
   - matplotlib
+  - pandasql
   - make

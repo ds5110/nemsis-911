@@ -1,8 +1,0 @@
-name: 911-NEMSIS
-channels:
-  - defaults
-dependencies:
-  - python=3.11
-  - pandas=2.0.3
-  - seaborn=0.11.1
-prefix: /home/aaron/miniconda3/envs/911-NEMSIS

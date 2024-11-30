@@ -1,4 +1,15 @@
-Table: events_renamed.pickle
+
+# Preliminary EDA
+
+We will review the filtered prepared dataset *selected_events* in order to learn the following:
+- What columns were included?
+- How many null values are there in each column?
+- What is the datatype of each column? 
+- What are some descriptive statistics about each column?
+
+This info. will be paired with the [NEMSIS Data Dictionary](https://nemsis.org/media/nemsis_v3/release-3.5.0/DataDictionary/PDFHTML/EMSDEMSTATE/index.html) to better understand how each column should be used in future analyses. 
+
+Table: selected_events.pickle
 	Number of Rows: 95735
 	Number of Columns: 13
 

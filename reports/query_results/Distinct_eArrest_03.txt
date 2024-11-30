@@ -1,0 +1,15 @@
+Query:
+'''
+    select distinct eArrest_03
+    from FACTPCRARRESTRESUSCITATION
+'''
+
+|  eArrest_03  |
+|  7701003  |
+|  7701001  |
+|  3003003  |
+|  3003005  |
+|  3003007  |
+|  3003009  |
+|  3003001  |
+|  3003011  |

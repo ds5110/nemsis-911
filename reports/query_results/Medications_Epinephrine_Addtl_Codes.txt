@@ -1,0 +1,25 @@
+Query:
+'''
+    select distinct m.eMedications_03, m.eMedications_03Descr from medications m 
+    where m.eMedications_03Descr like '%epinephrine%'
+    order by m.eMedications_03
+    
+'''
+
+|  eMedications_03  |  eMedications_03Descr  |
+|  107606.0  |  Bupivacaine / Epinephrine                                                                             |
+|  284622.0  |  Articaine / Epinephrine                                                                               |
+|  727316.0  |  0.3 ML Epinephrine 0.5 MG/ML Prefilled Syringe                                                        |
+|  727373.0  |  10 ML Epinephrine 0.1 MG/ML Prefilled Syringe                                                         |
+|  727374.0  |  1 ML Epinephrine 1 MG/ML Prefilled Syringe                                                            |
+|  727386.0  |  0.3 ML Epinephrine 0.5 MG/ML Prefilled Syringe [Epipen]                                               |
+|  746946.0  |  Xylocaine with Epinephrine                                                                            |
+|  1010767.0  |  Epinephrine / Lidocaine Injectable Solution [Xylocaine with Epinephrine]                              |
+|  1011648.0  |  Articadent 4 % with Epinephrine 1:100  |
+|  1011809.0  |  Lignospan 2/1:100000 (lidocaine hydrochloride / epinephrine (as epinephrine bitartrate) ) Injectable  |
+|  1100194.0  |  10 ML EPINEPHrine 0.016 MG/ML Prefilled Syringe                                                       |
+|  1150120.0  |  1 ML Epinephrine 0.01 MG/ML / Lidocaine Hydrochloride 10 MG/ML Prefilled Syringe                      |
+|  1233582.0  |  Bupivacaine / Epinephrine / Fentanyl                                                                  |
+|  1233778.0  |  10 ML EPINEPHrine 0.01 MG/ML Prefilled Syringe                                                        |
+|  1293648.0  |  1.7 ML Epinephrine 0.01 MG/ML / Lidocaine Hydrochloride 20 MG/ML Prefilled Syringe                    |
+|  1305268.0  |  0.15 ML Epinephrine 1 MG/ML Prefilled Syringe [Auvi-Q]                                                |

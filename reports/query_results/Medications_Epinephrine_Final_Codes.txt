@@ -1,0 +1,27 @@
+Query:
+'''
+    select distinct m.eMedications_03, m.eMedications_03Descr from FACTPCRMEDICATION m 
+    where m.eMedications_03 in (3992, 310116, 310132, 
+    317361, 328314, 328316, 330545, 372030, 377281,
+    727316, 727373, 727374, 727386, 1100194, 1233778, 1305268)
+    order by m.eMedications_03
+    
+'''
+
+|  eMedications_03  |  eMedications_03Descr  |
+|  1100194  |  10 ML EPINEPHrine 0.016 MG/ML Prefilled Syringe  |
+|  1233778  |  10 ML EPINEPHrine 0.01 MG/ML Prefilled Syringe  |
+|  1305268  |  0.15 ML Epinephrine 1 MG/ML Prefilled Syringe [Auvi-Q]  |
+|  310116  |  Epinephrine 0.1 MG/ML Injectable Solution  |
+|  310132  |  EPINEPHrine 1 MG/ML Injectable Solution  |
+|  317361  |  EPINEPHrine 0.1 MG/ML  |
+|  328314  |  Epinephrine 10 MG/ML  |
+|  328316  |  Epinephrine 1 MG/ML  |
+|  330545  |  EPINEPHrine 0.01 MG/ML  |
+|  372030  |  Epinephrine Injectable Solution  |
+|  377281  |  Epinephrine Inhalant Solution  |
+|  3992  |  Epinephrine  |
+|  727316  |  0.3 ML Epinephrine 0.5 MG/ML Prefilled Syringe  |
+|  727373  |  10 ML Epinephrine 0.1 MG/ML Prefilled Syringe  |
+|  727374  |  1 ML Epinephrine 1 MG/ML Prefilled Syringe  |
+|  727386  |  0.3 ML Epinephrine 0.5 MG/ML Prefilled Syringe [Epipen]  |

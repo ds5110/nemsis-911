@@ -41,46 +41,27 @@ unzipped_csvs = ./data/interim/ComputedElements.txt \
                 ./data/interim/PCRVITALGLASGOWQUALIFIERGROUP.txt \
                 ./data/interim/Pub_PCRevents.txt
 
-build: ./reports/chi-square.txt
+build: ./reports/preliminary_eda.txt eda_charts calculate_epinephrine_usage find_cols 
 
-environment:
-	conda env create -n project-duggani -f environment.yml
-# conda activate project-duggani
+./reports/preliminary_eda.txt: ./data/processed/selected_events.pickle
+	python ./src/column_info.py
 
-prelim-eda:
-	python src/data/column_info.py
+eda_charts: ./data/processed/selected_events.pickle
+	python ./src/eda_charts.py
 
-prelim-eda_sample: 
-	python src/data/column_info_sample.py
+calculate_epinephrine_usage: ./data/processed/selected_events.pickle
+	python ./src/calculate_epinephrine_usage.py
 
-eda-charts:
-	python src/data/eda_charts.py
+./data/processed/selected_events.pickle: $(unzipped_csvs)
+	python ./src/create_NEMSIS_db.py
+	python ./src/load_data_NEMSIS_db.py
+	python ./src/filter_primary_NEMSIS_cases.py
 
-create-dirs:
-	mkdir -p figs/fig_samples
-	mkdir -p data_sample
+find_cols: col_headers
+	python ./src/nemsis_find_cols.py
 
-eda-charts_sample: create-dirs
-	python src/data/eda_charts_sample.py
-   
-./reports/chi-square.txt: ./data/processed/events_renamed.pickle
-	python ./src/data/analysis.py
-
-./data/processed/events_renamed.pickle: ./data/processed/events.pickle
-	python ./src/data/rename_columns.py
-
-# Convert the CSV to a pickle of a pandas dataframe
-./data/processed/events.pickle: ./data/csv/Pub_PCRevents.csv ./data/csv/ComputedElements.csv
-	python ./src/data/make_dataset.py
-
-# Pub_PCRevents.txt uses a multi-character delimiter, which means pandas.read_csv() must use the python parsing engine.
-# This raises an error when using the chunksize argument and a callable skiprows argument together. Converting the
-# delimiter to a comma avoids this issue. For more details, see: https://github.com/pandas-dev/pandas/issues/55677
-./data/csv/Pub_PCRevents.csv: $(unzipped_csvs)
-	sed 's/~|~/,/g' ./data/interim/Pub_PCRevents.txt > ./data/csv/Pub_PCRevents.csv
-
-./data/csv/ComputedElements.csv: $(unzipped_csvs)
-	sed 's/~|~/,/g' ./data/interim/ComputedElements.txt > ./data/csv/ComputedElements.csv
+col_headers: ./data/repaired/ASCII\ 2022_repaired.zip
+	python ./src/nemsis_text_format.py
 
 $(unzipped_csvs) &: ./data/repaired/ASCII\ 2022_repaired.zip
 	unzip -jo "./data/repaired/ASCII 2022_repaired.zip" -d ./data/interim
@@ -95,3 +76,24 @@ clean:
 	find ./data/csv/ -type f -not -name '.gitignore' -delete
 	find ./data/interim/ -type f -not -name '.gitignore' -delete
 	find ./data/repaired/ -type f -not -name '.gitignore' -delete
+	rm -f data/NEMSIS_PUB.db
+	rm -f figs/*
+	rm -f reports/col_locations/cols_of_interest.txt 
+	rm -f reports/preliminary_eda.txt
+	rm -f reports/text_file_headers/*
+	rm -f reports/epinephrine_usage.txt
+
+rebuild_database:
+	rm -f data/NEMSIS_PUB.db
+	python ./src/create_NEMSIS_db.py
+	python ./src/load_data_NEMSIS_db.py
+
+reselect_events:
+	python ./src/filter_primary_NEMSIS_cases.py
+
+environment:
+	conda env create -n project-duggani -f environment.yml
+# conda activate project-duggani
+
+query:
+	python ./src/query.py

@@ -1,0 +1,10 @@
+'eDisposition_25'~|~'PcrKey'~|~'eDisposition_24'
+Not Recorded        ~|~64915249 ~|~7701003   
+Not Recorded        ~|~80151477 ~|~7701003   
+Not Recorded        ~|~100167527 ~|~7701003   
+Not Recorded        ~|~105483868 ~|~7701003   
+Not Applicable      ~|~107118510 ~|~7701001   
+Not Recorded        ~|~108876112 ~|~7701003   
+Not Recorded        ~|~109453969 ~|~7701003   
+Not Recorded        ~|~113450570 ~|~7701003   
+Not Recorded        ~|~116677678 ~|~7701003   

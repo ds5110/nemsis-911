@@ -1,0 +1,22 @@
+
+All Incidents - 95735 
+    	Rural - 5590 (5.84%)
+    	Urban / Suburban - 90145 (94.16%)
+    
+Age in Years, mean (SD) - 67.16 (15.55)
+    	Rural - 66.42 (14.39)
+    	Urban / Suburban - 67.2 (15.62)
+    
+Male - 59823 (62.62%)
+    	Rural - 3657 (65.63%)
+    	Urban / Suburban - 56166 (62.44%)
+    
+Epinephrine Administered - Combined
+    69505 cases with epinephrine administered / 95735 total cases = 72.6%
+    
+Epinephrine Administered - Rural 
+    3918 cases with epinephrine administered / 5590 total cases = 70.09%
+    
+Epinephrine Administered - Urban / Suburban
+    65587 cases with epinephrine administered / 90145 total cases = 72.76%
+    
