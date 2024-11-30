@@ -1,6 +1,25 @@
 ### Project Repo for Duggan, Jordan, & Darby
 
 ## System & Directory Requirements
+Request a copy of the NEMSIS Public-Release Research Dataset for 2022 from NEMSIS in ASCII (pipe-delimited) format. You
+can currently find the request form [here](https://nemsis.org/using-ems-data/request-research-data/). When you receive
+the file, verify that it has the following characteristics:
+  - filename: "ASCII 2022.zip"
+  - size: 18,021,941,320 bytes
+  - sha256 hash: 2fc87b18edf2e762be2d723c44413cb98064bcbc3e6a46468e3b42f25f521898
+**Note:** if analysis is extended to a different year, file and data properties may vary.
+
+Use a computer with at least 300 GB of available storage to hold the dataset. This work was done on a
+computer with 32 GB of RAM; less RAM may work, but is not advised as some analysis files if written inefficiently (multiple pandas dfs),
+may exceed 16 GB of RAM.
+
+Discovery may also be used to leverage cloud computing if personal computers do not meet the requirements 
+- **TODO: ADD LINK TO DISCOVERY INSTRUCTIONS HERE**
+
+Utilities:
+* [make](https://www.gnu.org/software/make/) installed, along with other GNU utilities. *(Windows may require WSL)*
+* [miniconda](https://docs.conda.io/projects/miniconda) to create reproducible environments for Python dependencies
+* [git](https://git-scm.com/) for version control.
 
 ## Makefile Instructions for Reproducibility
 1) **make environment** - to create a conda environment named `project-duggani` with the required dependencies, from `environment.yml`.
@@ -58,7 +77,6 @@
     
 ```
 
-
 ## EDA
 Links for our EDA can be found below:
 - [Preliminary EDA on the Data Available](./markdown/preliminary_eda.md): includes the shape of the dataset, datatypes of each column, number of nulls in each column, and information from NEMSIS' data dictionary about what each column represents. 
@@ -71,12 +89,5 @@ For information about our proposed project, see [Proposed Project Information](.
 Referenced files from Aaron Fihn's initial project include:
 - [Aaron Fihn's Readme](./markdown/README_Aaron-Fihn.md)
 - [Makefile Information](./markdown/Makefile_overview.md)
-
-
-
-
-
-**Note Re: Data**:
-* For easier replication of our initial EDA by the TA's, we have a small CSV file with a subset of the data in *data_sample/events_renamed_sample.csv*
-* *Due to file size concerns, all other data has been gitignored. If you want to work with the full dataset, follow [Aaron Fihn's instructions](./markdown/Makefile_overview.md) for downloading the data, then run his **make** command to prepare the events_renamed.pickle file*
-
+- **TODO** - cite Peters et al. paper. 
+- **TODO** - formally cite Aaron Fihn's project repo
