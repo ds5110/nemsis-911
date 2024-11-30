@@ -39,22 +39,22 @@
 │   └── preliminary_eda.txt    <- Stores summary data of each column in the prepared dataset, including # of nulls, unique values, etc.
 │
 └── src                        <- Source code
-    ├── calculate_epinephrine_usage.py           <- This script calculates summary statistics around epinephrine usage and urbanicity, to compare to the Peters et al. paper.
-    ├── column_info.py           <- For preliminary EDA, reports on column information in the filtered dataset, e.g., num nulls, unique vals, etc.
-    ├── create_NEMSIS_db.py           <- Creates the NEMSIS_PUB.db sqlite database object
-    ├── eda_charts.py           <- Conducts EDA and saves png plots to figs directory. 
-    ├── filter_Primary_NEMSIS_cases.py           <- Applies all filters in constants to save a pickle file with the selected PCR events. 
-    ├── load_data_NEMSIS_db.py           <- Reads text files to load data into the NEMSIS_PUB.db database
-    ├── nemsis_find_cols.py           <- Searches header text files to find columns of interest, if there are columns for which we do not know the source table. 
-    ├── nemsis_text_format.py           <- Reads all text files to save top 10 rows of each to reports/text_file_headers directory
-    ├── query.py           <- Script for ad hoc querying of NEMSIS_PUB.db database, which saves output headers to reports/query_results directory
+    ├── calculate_epinephrine_usage.py <- This script calculates summary statistics around epinephrine usage and urbanicity, to compare to the Peters et al. paper.
+    ├── column_info.py                 <- For preliminary EDA, reports on column information in the filtered dataset, e.g., num nulls, unique vals, etc.
+    ├── create_NEMSIS_db.py            <- Creates the NEMSIS_PUB.db sqlite database object
+    ├── eda_charts.py                  <- Conducts EDA and saves png plots to figs directory. 
+    ├── filter_Primary_NEMSIS_cases.py <- Applies all filters in constants to save a pickle file with the selected PCR events. 
+    ├── load_data_NEMSIS_db.py         <- Reads text files to load data into the NEMSIS_PUB.db database
+    ├── nemsis_find_cols.py            <- Searches header text files to find columns of interest, if there are columns for which we do not know the source table. 
+    ├── nemsis_text_format.py          <- Reads all text files to save top 10 rows of each to reports/text_file_headers directory
+    ├── query.py                       <- Script for ad hoc querying of NEMSIS_PUB.db database, which saves output headers to reports/query_results directory
     │
-    └── constants              <- Constant values for creating database, and filter criteria for selected PCR events. 
-        ├── __init.py__        <- Makes constants a Python module that may be imported by other scripts
-        ├── file_column_mapping.py    <- Defines the column mapping for the primary tables of interest that will be added to NEMSIS_PUB.db
-        ├── filter_criteria.py  <- Defines the filter criteria to be used to select the curated dataset of relevant PCRs
-        ├── paths.py            <- Defines a couple of path variables that are called multiple times
-        └── table_definitions.py <- Includes SQL statements that are declared while constructing NEMSIS_PUB.db
+    └── constants                      <- Constant values for creating database, and filter criteria for selected PCR events. 
+        ├── __init.py__                <- Makes constants a Python module that may be imported by other scripts
+        ├── file_column_mapping.py     <- Defines the column mapping for the primary tables of interest that will be added to NEMSIS_PUB.db
+        ├── filter_criteria.py         <- Defines the filter criteria to be used to select the curated dataset of relevant PCRs
+        ├── paths.py                   <- Defines a couple of path variables that are called multiple times
+        └── table_definitions.py       <- Includes SQL statements that are declared while constructing NEMSIS_PUB.db
     
 ```
 
