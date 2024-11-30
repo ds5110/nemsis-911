@@ -28,7 +28,7 @@ def main():
 
     # open a txt file to save info. about each column
     f = open("./reports/preliminary_eda.txt", "w")
-    f.write("Table: events_renamed.pickle\n")
+    f.write("Table: selected_events.pickle\n")
     f.write(f"\tNumber of Rows: {n_rows}\n")
     f.write(f"\tNumber of Columns: {len(col_names)}\n\n")
 

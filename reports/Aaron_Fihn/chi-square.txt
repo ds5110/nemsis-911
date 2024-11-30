@@ -1,0 +1,10 @@
+Contingency table of urbanicity vs outcomes:
+End_of_EMS_Cardiac_Arrest_Event  Alive    Dead
+Urbanicity_2                                  
+Rural/Wilderness                  3049   14090
+Urban/Suburban                   31797  135368
+
+
+Results of chi-square independence test between using the above contingency table:
+Chi2ContingencyResult(statistic=15.376426110258624, pvalue=8.8080342785201e-05, dof=1, expected_freq=array([[  3240.43750543,  13898.56249457],
+       [ 31605.56249457, 135559.43750543]]))
