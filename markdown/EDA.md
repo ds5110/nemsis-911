@@ -1,33 +1,30 @@
 # EDA with Visualizations
 
 ## Distribution by Urbanicity
-To start investigating some variables in the dataset, we wanted to gain a sense for how many patients in the dataset are from rural vs. urban zones (*note: the scales differ due to less rows being included in the sample data. The left plot was generated from the entire dataset, the right plot is from the sample data*):
+To start investigating some variables in the dataset, we wanted to gain a sense for how many patients in the dataset are from rural vs. urban zones:
 
 <table>
 <tr>
 <td><img src="../figs/patient-counts-by-urbanicity.png" alt="Full Dataset"/></td>
-<td><img src="./figs/fig_samples/patient-counts-by-urbanicity_sample.png" alt="Sample Dataset"/></td>
 </tr>
 </table>
 
-We can see that the vast majority of the dataset is for patients in urban zones. This should be kept in mind for future analyses. We can also start to get a sense for the ages of patients within a regional type (*note: the scales differ due to less rows being included in the sample data. The left plot was generated from the entire dataset, the right plot is from the sample data*):
+We can see that the vast majority of the dataset is for patients in urban zones. This should be kept in mind for future analyses. We can also start to get a sense for the ages of patients within a regional type:
 
 <table>
 <tr>
 <td>
-<img src="./figs/patient-counts-by-urbanicity-age.png"/></td>
-<td><img src="./figs/fig_samples/patient-counts-by-urbanicity-age_sample.png" alt="Full Dataset"/></td>
+<img src="../figs/patient-counts-by-urbanicity-age.png"/></td>
 </tr>
 </table>
 
 ## Distribution of Age
 
-Next, we wanted to get a sense for the age distribution of patients with cardiac events (*note: the scales differ due to less rows being included in the sample data. The left plot was generated from the entire dataset, the right plot is from the sample data*):
+Next, we wanted to get a sense for the age distribution of patients with cardiac events.
 
 <table>
 <tr>
-<td><img src="./figs/age-histogram.png" alt="Full Dataset"/></td>
-<td><img src="./figs/fig_samples/age-histogram_sample.png" alt="Sample Dataset"/></td>
+<td><img src="../figs/age-histogram.png" alt="Full Dataset"/></td>
 </tr>
 </table>
 
@@ -35,12 +32,11 @@ We can see that the patient age distribution is negatively skewed - which makes 
 
 ## Distribution of Age by Urbanicity
 
-We also plotted a histogram of age using probability density, with shading by urbanicity (*note: the plots differ due to less rows being included in the sample data. The left plot was generated from the entire dataset, the right plot is from the sample data*):
+We also plotted a histogram of age using probability density, with shading by urbanicity:
 
 <table>
 <tr>
-<td><img src="./figs/age-histogram-by-urbanicity.png" alt="Full Dataset"/></td>
-<td><img src="./figs/fig_samples/age-histogram-by-urbanicity_sample.png" alt="Sample Dataset"/></td>
+<td><img src="../figs/age-histogram-by-urbanicity.png" alt="Full Dataset"/></td>
 </tr>
 </table>
 
