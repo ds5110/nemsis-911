@@ -1,6 +1,10 @@
 import sys
 sys.path.insert(0, '/constants/file_column_mapping')
 
+"""
+This dictionary defines the column mapping for the primary tables of interest. To add tables to hte NEMSIS_PUB.db, 
+add the table name(s) as key(s) and column mapping as a value string.
+"""
 file_column_mapping = {
     'ComputedElements.txt': "PcrKey'~|~'USCensusRegion'~|~'USCensusDivision'~|~'NasemsoRegion'~|~'Urbanicity'~|~'ageinyear'~|~'EMSDispatchCenterTimeSec'~|~'EMSChuteTimeMin'~|~'EMSSystemResponseTimeMin'~|~'EMSSceneResponseTimeMin'~|~'EMSSceneTimeMin'~|~'EMSSceneToPatientTimeMin'~|~'EMSTransportTimeMin'~|~'EMSTotalCallTimeMin'",
     'FACTPCRARRESTROSC.txt': "PcrKey'~|~'eArrest_12'",

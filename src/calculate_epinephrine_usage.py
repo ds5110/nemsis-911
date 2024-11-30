@@ -4,19 +4,26 @@ from pathlib import Path
 import sqlite3
 
 
+"""
+This script reviews filtered PCR events (see constants/filter_criteria.py), to calculate epinephrine
+administered figures for 2022. Filter criteria and methodology are inspired by the Peters et al paper. 
+"""
 def main():
-
+    # load the filtered events pickle created by filter_primary_NEMSIS_cases.py, store as pandas df
     file_path = Path(__file__).parent.parent / 'data' / 'processed' / 'selected_events.pickle' 
     df = pd.read_pickle(file_path)
 
+    # get counts by class of EpinephrineAdministered
     combined_ep = df['EpinephrineAdministered'].value_counts()
     tot = combined_ep[0] + combined_ep[1]
     tot_no_ep = combined_ep[0]
     tot_ep = combined_ep[1]
     
+    # split dataframe into rural and urban subsets for figures by urbanicity
     rural_df = df[(df.Urbanicity == "Rural") | (df.Urbanicity == "Wilderness")]
     urban_df = df[(df.Urbanicity == "Urban") | (df.Urbanicity == "Suburban")]
 
+    # calculate figures for epinephrine by urbanicity
     rural_ep = rural_df['EpinephrineAdministered'].value_counts()
     rur_tot = rural_ep[0] + rural_ep[1]
     rur_no_ep = rural_ep[0]
@@ -27,11 +34,12 @@ def main():
     urb_no_ep = urban_ep[0]
     urb_ep = urban_ep[1]
     
-
+    # get patient count by gender across urbanicity
     tot_gender = df['ePatient_13'].value_counts()
     rur_gender = rural_df['ePatient_13'].value_counts()
     urb_gender = urban_df['ePatient_13'].value_counts()
 
+    # format string with summary data
     report_message = f"""\nAll Incidents - {tot} 
     \tRural - {rur_tot} ({round(rur_tot / tot * 100 , 2)}%)
     \tUrban / Suburban - {urb_tot} ({round(urb_tot / tot * 100, 2)}%)

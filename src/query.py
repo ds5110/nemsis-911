@@ -63,9 +63,6 @@ def main():
     """
     query_df = pd.read_sql_query(query, conn)
 
-    print(query_df.dtypes)
-
-    
     query_col_names = query_df.columns.tolist()
 
     out_file = open(f"./reports/query_results/{file_name}.txt", 'w')

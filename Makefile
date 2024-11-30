@@ -63,40 +63,6 @@ find_cols: col_headers
 col_headers: ./data/repaired/ASCII\ 2022_repaired.zip
 	python ./src/nemsis_text_format.py
 
-
-#./data/processed/events_renamed.pickle: ./data/processed/events.pickle
-#	python ./src/rename_columns.py
-
-# Convert the CSV to a pickle of a pandas dataframe
-#./data/processed/events.pickle: ./data/csv/Pub_PCRevents.csv ./data/csv/ComputedElements.csv ./data/csv/FACTPCRMEDICATION.csv ./data/csv/PCRPATIENTRACEGROUP.csv ./data/csv/FACTPCRARRESTWITNESS.csv ./data/csv/FACTPCRARRESTROSC.csv ./data/csv/FACTPCRARRESTRESUSCITATION.csv
-#	python ./src/make_dataset.py
-
-# Pub_PCRevents.txt uses a multi-character delimiter, which means pandas.read_csv() must use the python parsing engine.
-# This raises an error when using the chunksize argument and a callable skiprows argument together. Converting the
-# delimiter to a comma avoids this issue. For more details, see: https://github.com/pandas-dev/pandas/issues/55677
-#./data/csv/Pub_PCRevents.csv: $(unzipped_csvs)
-#	sed 's/~|~/,/g' ./data/interim/Pub_PCRevents.txt > ./data/csv/Pub_PCRevents.csv
-
-#./data/csv/ComputedElements.csv: $(unzipped_csvs)
-#	sed 's/~|~/,/g' ./data/interim/ComputedElements.txt > ./data/csv/ComputedElements.csv
-
-
-# --------------- adding additional csv files taj 11/10 ---------------------------- #
-#./data/csv/FACTPCRMEDICATION.csv: $(unzipped_csvs)
-#	sed 's/~|~/,/g' ./data/interim/FACTPCRMEDICATION.txt > ./data/csv/FACTPCRMEDICATION.csv
-
-#./data/csv/PCRPATIENTRACEGROUP.csv: $(unzipped_csvs)
-#	sed 's/~|~/,/g' ./data/interim/PCRPATIENTRACEGROUP.txt > ./data/csv/PCRPATIENTRACEGROUP.csv
-
-#./data/csv/FACTPCRARRESTWITNESS.csv: $(unzipped_csvs)
-#	sed 's/~|~/,/g' ./data/interim/FACTPCRARRESTWITNESS.txt > ./data/csv/FACTPCRARRESTWITNESS.csv
-
-#./data/csv/FACTPCRARRESTROSC.csv: $(unzipped_csvs)
-#	sed 's/~|~/,/g' ./data/interim/FACTPCRARRESTROSC.txt > ./data/csv/FACTPCRARRESTROSC.csv
-
-#./data/csv/FACTPCRARRESTRESUSCITATION.csv: $(unzipped_csvs)
-#	sed 's/~|~/,/g' ./data/interim/FACTPCRARRESTRESUSCITATION.txt > ./data/csv/FACTPCRARRESTRESUSCITATION.csv
-
 $(unzipped_csvs) &: ./data/repaired/ASCII\ 2022_repaired.zip
 	unzip -jo "./data/repaired/ASCII 2022_repaired.zip" -d ./data/interim
 	touch -c ./data/interim/*
@@ -104,7 +70,6 @@ $(unzipped_csvs) &: ./data/repaired/ASCII\ 2022_repaired.zip
 # The zip file from NEMSIS is corrupted and must be repaired before unzipping
 ./data/repaired/ASCII\ 2022_repaired.zip: ./data/raw/ASCII\ 2022.zip
 	zip -FFfz "./data/raw/ASCII 2022.zip" --out "./data/repaired/ASCII 2022_repaired.zip"
-
 
 clean:
 	find ./data/processed/ -type f -not -name '.gitignore' -delete
@@ -114,10 +79,13 @@ clean:
 	rm -f data/NEMSIS_PUB.db
 	rm -f figs/*
 	rm -f reports/col_locations/cols_of_interest.txt 
-	rm -f reports/chi-square.txt
 	rm -f reports/preliminary_eda.txt
 	rm -f reports/text_file_headers/*
+	rm -f reports/epinephrine_usage.txt
 
 environment:
 	conda env create -n project-duggani -f environment.yml
 # conda activate project-duggani
+
+query:
+	python ./src/query.py

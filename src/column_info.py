@@ -1,8 +1,24 @@
 import pandas as pd
 from pathlib import Path
 
+
+"""
+This script reviews the filtered events data created by filter_primary_NEMSIS_cases.py, and does some
+preliminary EDA, saving data to reports/preliminary_eda.txt, including the following for each column of the data;
+
+- Column Name and Index
+- Datatype
+- Number & % of null values
+- Number of Unique values
+
+Example:
+**Column at Index 11: 'EMSSystemResponseTimeMin'**
+ - Datatype: float64
+ - Number of Null Values: 0  |  Percent Null: 0.0%
+ - Number of Unique Values: 1990
+"""
 def main():
-    # read file from Aaron's project
+    # get selected events
     data_fp = Path(__file__).parent.parent / 'data' / 'processed' / 'selected_events.pickle' 
     df = pd.read_pickle(data_fp)
 
@@ -31,9 +47,6 @@ def main():
         f.write(f"\n - Number of Unique Values: {num_unique}\n\n")
 
     f.close() # make sure to close the text file
-
-    # print(df['ageinyear'].head(5)) # may be uncommented to see some example data from a col
-
 
 if __name__ == "__main__":
     main()

@@ -7,12 +7,19 @@ from constants import paths
 from pathlib import Path
 
 
+"""
+This script applies the filter criteria identified by our project group to filter the PCR events 
+down to the relevant cardiac arrest events. 
 
+See constants/filter_criteria.py for the selected codes for each feature. 
+    Note: medications are first aggregated using common table expressions, as there may be multiple medications per PCR
+"""
 def main():
 
+    # connect to the sqlite database
     conn = sqlite3.connect(paths.db_path)
 
-
+    # formatted string for query
     query = f"""
 
     with cte_medications_filtered as (
@@ -112,24 +119,13 @@ def main():
     order by comp_el.ageinyear
     """
     
+    # print query to console, save to pandas df
     print(query)
     query_df = pd.read_sql_query(query, conn)
 
-    print(query_df.shape)
-    print(query_df.dtypes)
-    print(query_df.head)
-
-    print(query_df['eArrest_03'].unique())
-    print(query_df['TotalResponseTime'].min(), query_df['TotalResponseTime'].max())
-    print(query_df['eResponse_05'].unique())
-    print(query_df['eDisposition_12'].unique())
-    print(query_df['eScene_01'].unique())
-    
-    print(query_df['EpinephrineAdministered'].value_counts())
-
+    # save results to pickle file so that it can be read into df for faster subsequent analysis
     save_path = Path(__file__).parent.parent / 'data' / 'processed' / 'selected_events.pickle' 
     query_df.to_pickle(path=save_path) 
-
 
 if __name__ == "__main__":
     main()

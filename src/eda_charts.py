@@ -5,8 +5,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
+"""
+This script does some EDA with plotting for patient age and urbanicity of the filtered cardiac events.
+See figs directory for saved plots
+"""
 def main():
-    # read selected files from database query
+    # read filtered events from database query
     data_fp = Path(__file__).parent.parent / 'data' / 'processed' / 'selected_events.pickle' 
     df = pd.read_pickle(data_fp)
 

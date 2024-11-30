@@ -2,6 +2,13 @@ import sqlite3
 from constants import table_definitions as tbl_defs
 from constants import paths
 
+
+"""
+This script creates the data/NEMSIS_PUB.db sqlite database to store
+data for further analysis. 
+
+See constants/table_definitions.py for the SQL used to create each table
+"""
 def main():
     # create sqlite .db object to store database
     conn = sqlite3.connect(paths.db_path) 

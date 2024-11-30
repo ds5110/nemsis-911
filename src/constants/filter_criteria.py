@@ -135,21 +135,21 @@ Rationale: the following codes were included as they are various
             drugs. 
 
 Included:
-3992 - Epinephrine                                                                                           |
-310116 - Epinephrine 0.1 MG/ML Injectable Solution                                                             |
-310132 - EPINEPHrine 1 MG/ML Injectable Solution                                                               |
-317361 - EPINEPHrine 0.1 MG/ML                                                                                 |
-328314 - Epinephrine 10 MG/ML                                                                                  |
-328316 - Epinephrine 1 MG/ML                                                                                   |
-330545 - EPINEPHrine 0.01 MG/ML                                                                                |
-372030 - Epinephrine Injectable Solution                                                                       |
-377281 - Epinephrine Inhalant Solution                                                                         |
-727316 - 0.3 ML Epinephrine 0.5 MG/ML Prefilled Syringe                                                        |
-727373 - 10 ML Epinephrine 0.1 MG/ML Prefilled Syringe                                                         |
-727374 - 1 ML Epinephrine 1 MG/ML Prefilled Syringe                                                            |
-727386 - 0.3 ML Epinephrine 0.5 MG/ML Prefilled Syringe [Epipen]                                               |
-1100194 - 10 ML EPINEPHrine 0.016 MG/ML Prefilled Syringe                                                       |
-1233778 - 10 ML EPINEPHrine 0.01 MG/ML Prefilled Syringe                                                        |
+3992 - Epinephrine  
+310116 - Epinephrine 0.1 MG/ML Injectable Solution 
+310132 - EPINEPHrine 1 MG/ML Injectable Solution 
+317361 - EPINEPHrine 0.1 MG/ML  
+328314 - Epinephrine 10 MG/ML  
+328316 - Epinephrine 1 MG/ML  
+330545 - EPINEPHrine 0.01 MG/ML  
+372030 - Epinephrine Injectable Solution   
+377281 - Epinephrine Inhalant Solution 
+727316 - 0.3 ML Epinephrine 0.5 MG/ML Prefilled Syringe 
+727373 - 10 ML Epinephrine 0.1 MG/ML Prefilled Syringe  
+727374 - 1 ML Epinephrine 1 MG/ML Prefilled Syringe  
+727386 - 0.3 ML Epinephrine 0.5 MG/ML Prefilled Syringe [Epipen]
+1100194 - 10 ML EPINEPHrine 0.016 MG/ML Prefilled Syringe 
+1233778 - 10 ML EPINEPHrine 0.01 MG/ML Prefilled Syringe 
 1305268 - 0.15 ML Epinephrine 1 MG/ML Prefilled Syringe [Auvi-Q] 
 """
 epinephrine_medication_codes = [

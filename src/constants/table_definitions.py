@@ -1,6 +1,11 @@
 import sys
 sys.path.insert(0, '/constants/table_definitions')
 
+
+"""
+This dictionary includes SQL definitions for the tables of interest. Keys are the table name, and values include
+SQL statements to create a table in NEMSIS_PUB.db
+"""
 table_definitions = {
     "Pub_PCRevents": """
         CREATE TABLE IF NOT EXISTS Pub_PCRevents (
