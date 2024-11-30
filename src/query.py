@@ -2,19 +2,15 @@ import pandas as pd
 from pandasql import sqldf
 from pathlib import Path
 import sqlite3
-
+from constants import data_fp
 
 def main():
 
     # parameters
-    n_rows_save = 20
+    n_rows_save = 30
     file_name = "Medications_Epinephrine_CTE_Test"
 
-    # read file from Aaron's project
-    data_fp = Path(__file__).parent.parent / 'data' / 'processed' / 'events.pickle' #.parent
-    df = pd.read_pickle(data_fp)
-
-    con = sqlite3.connect('data/NEMSIS.db')
+    conn = sqlite3.connect(data_fp)
     
     query = """
     select 
@@ -65,7 +61,7 @@ def main():
 
     group by e.PcrKey
     """
-    query_df = pd.read_sql_query(query, con)
+    query_df = pd.read_sql_query(query, conn)
 
     print(query_df.dtypes)
 
@@ -89,7 +85,6 @@ def main():
         out_file.write("|\n")
     
     out_file.close()
-
 
 if __name__ == "__main__":
     main()

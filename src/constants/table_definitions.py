@@ -3,7 +3,7 @@ sys.path.insert(0, '/constants/table_definitions')
 
 table_definitions = {
     "Pub_PCRevents": """
-        CREATE TABLE Pub_PCRevents (
+        CREATE TABLE IF NOT EXISTS Pub_PCRevents (
             PcrKey TEXT PRIMARY KEY,
             eDispatch_01 TEXT,
             eDispatch_02 TEXT,
@@ -55,7 +55,7 @@ table_definitions = {
         )
     """,
     "ComputedElements": """
-        CREATE TABLE ComputedElements (
+        CREATE TABLE IF NOT EXISTS ComputedElements (
             PcrKey TEXT PRIMARY KEY,
             USCensusRegion TEXT,
             USCensusDivision TEXT,
@@ -74,14 +74,14 @@ table_definitions = {
         )
     """,
     "FACTPCRARRESTROSC": """
-        CREATE TABLE FACTPCRARRESTROSC (
+        CREATE TABLE IF NOT EXISTS FACTPCRARRESTROSC (
             PcrKey TEXT PRIMARY KEY,
             eArrest_12 TEXT,
             FOREIGN KEY (PcrKey) REFERENCES Pub_PCRevents(PcrKey) 
         )
     """,
     "FACTPCRARRESTRESUSCITATION": """
-        CREATE TABLE FACTPCRARRESTRESUSCITATION (
+        CREATE TABLE IF NOT EXISTS FACTPCRARRESTRESUSCITATION (
             PcrKey TEXT PRIMARY KEY,
             eArrest_03 TEXT,
             FOREIGN KEY (PcrKey) REFERENCES Pub_PCRevents(PcrKey) 
@@ -89,21 +89,21 @@ table_definitions = {
     """,
     
     "FACTPCRARRESTWITNESS": """
-        CREATE TABLE FACTPCRARRESTWITNESS (
+        CREATE TABLE IF NOT EXISTS FACTPCRARRESTWITNESS (
             PcrKey TEXT PRIMARY KEY, 
             eArrest_04 TEXT,
             FOREIGN KEY (PcrKey) REFERENCES Pub_PCRevents(PcrKey) 
         )
     """,
     "FACTPCRARRESTCPRPROVIDED": """
-        CREATE TABLE FACTPCRARRESTCPRPROVIDED (
+        CREATE TABLE IF NOT EXISTS FACTPCRARRESTCPRPROVIDED (
             PcrKey TEXT PRIMARY KEY, 
             eArrest_09 TEXT,
             FOREIGN KEY (PcrKey) REFERENCES Pub_PCRevents(PcrKey) 
         )
     """,
     "FACTPCRMEDICATION": """
-        CREATE TABLE FACTPCRMEDICATION (
+        CREATE TABLE IF NOT EXISTS FACTPCRMEDICATION (
             eMedications_01 TEXT,
             PcrMedicationKey TEXT PRIMARY KEY,
             PcrKey TEXT, 

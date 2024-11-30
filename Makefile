@@ -41,64 +41,61 @@ unzipped_csvs = ./data/interim/ComputedElements.txt \
                 ./data/interim/PCRVITALGLASGOWQUALIFIERGROUP.txt \
                 ./data/interim/Pub_PCRevents.txt
 
-build: ./reports/chi-square.txt ./reports/preliminary_eda.txt eda_charts calculate_epinephrine_usage col_headers find_cols 
+build: ./reports/preliminary_eda.txt eda_charts calculate_epinephrine_usage find_cols 
 
-./reports/chi-square.txt: ./data/processed/events_renamed.pickle
-	python ./src/analysis.py
-
-./reports/preliminary_eda.txt: ./data/processed/events_renamed.pickle
+./reports/preliminary_eda.txt: ./data/processed/selected_events.pickle
 	python ./src/column_info.py
 
-eda_charts: ./data/processed/events_renamed.pickle
+eda_charts: ./data/processed/selected_events.pickle
 	python ./src/eda_charts.py
 
-calculate_epinephrine_usage: setup_db expand_events
+calculate_epinephrine_usage: ./data/processed/selected_events.pickle
 	python ./src/calculate_epinephrine_usage.py
 
-expand_events:
-	python ./src/expand_dataset.py
-
-col_headers: ./data/repaired/ASCII\ 2022_repaired.zip
-	python ./src/nemsis_text_format.py
+./data/processed/selected_events.pickle: $(unzipped_csvs)
+	python ./src/create_NEMSIS_db.py
+	python ./src/load_data_NEMSIS_db.py
+	python ./src/filter_primary_NEMSIS_cases.py
 
 find_cols: col_headers
 	python ./src/nemsis_find_cols.py
 
-setup_db:
-	python ./src/db_setup.py
+col_headers: ./data/repaired/ASCII\ 2022_repaired.zip
+	python ./src/nemsis_text_format.py
 
-./data/processed/events_renamed.pickle: ./data/processed/events.pickle
-	python ./src/rename_columns.py
+
+#./data/processed/events_renamed.pickle: ./data/processed/events.pickle
+#	python ./src/rename_columns.py
 
 # Convert the CSV to a pickle of a pandas dataframe
-./data/processed/events.pickle: ./data/csv/Pub_PCRevents.csv ./data/csv/ComputedElements.csv ./data/csv/FACTPCRMEDICATION.csv ./data/csv/PCRPATIENTRACEGROUP.csv ./data/csv/FACTPCRARRESTWITNESS.csv ./data/csv/FACTPCRARRESTROSC.csv ./data/csv/FACTPCRARRESTRESUSCITATION.csv
-	python ./src/make_dataset.py
+#./data/processed/events.pickle: ./data/csv/Pub_PCRevents.csv ./data/csv/ComputedElements.csv ./data/csv/FACTPCRMEDICATION.csv ./data/csv/PCRPATIENTRACEGROUP.csv ./data/csv/FACTPCRARRESTWITNESS.csv ./data/csv/FACTPCRARRESTROSC.csv ./data/csv/FACTPCRARRESTRESUSCITATION.csv
+#	python ./src/make_dataset.py
 
 # Pub_PCRevents.txt uses a multi-character delimiter, which means pandas.read_csv() must use the python parsing engine.
 # This raises an error when using the chunksize argument and a callable skiprows argument together. Converting the
 # delimiter to a comma avoids this issue. For more details, see: https://github.com/pandas-dev/pandas/issues/55677
-./data/csv/Pub_PCRevents.csv: $(unzipped_csvs)
-	sed 's/~|~/,/g' ./data/interim/Pub_PCRevents.txt > ./data/csv/Pub_PCRevents.csv
+#./data/csv/Pub_PCRevents.csv: $(unzipped_csvs)
+#	sed 's/~|~/,/g' ./data/interim/Pub_PCRevents.txt > ./data/csv/Pub_PCRevents.csv
 
-./data/csv/ComputedElements.csv: $(unzipped_csvs)
-	sed 's/~|~/,/g' ./data/interim/ComputedElements.txt > ./data/csv/ComputedElements.csv
+#./data/csv/ComputedElements.csv: $(unzipped_csvs)
+#	sed 's/~|~/,/g' ./data/interim/ComputedElements.txt > ./data/csv/ComputedElements.csv
 
 
 # --------------- adding additional csv files taj 11/10 ---------------------------- #
-./data/csv/FACTPCRMEDICATION.csv: $(unzipped_csvs)
-	sed 's/~|~/,/g' ./data/interim/FACTPCRMEDICATION.txt > ./data/csv/FACTPCRMEDICATION.csv
+#./data/csv/FACTPCRMEDICATION.csv: $(unzipped_csvs)
+#	sed 's/~|~/,/g' ./data/interim/FACTPCRMEDICATION.txt > ./data/csv/FACTPCRMEDICATION.csv
 
-./data/csv/PCRPATIENTRACEGROUP.csv: $(unzipped_csvs)
-	sed 's/~|~/,/g' ./data/interim/PCRPATIENTRACEGROUP.txt > ./data/csv/PCRPATIENTRACEGROUP.csv
+#./data/csv/PCRPATIENTRACEGROUP.csv: $(unzipped_csvs)
+#	sed 's/~|~/,/g' ./data/interim/PCRPATIENTRACEGROUP.txt > ./data/csv/PCRPATIENTRACEGROUP.csv
 
-./data/csv/FACTPCRARRESTWITNESS.csv: $(unzipped_csvs)
-	sed 's/~|~/,/g' ./data/interim/FACTPCRARRESTWITNESS.txt > ./data/csv/FACTPCRARRESTWITNESS.csv
+#./data/csv/FACTPCRARRESTWITNESS.csv: $(unzipped_csvs)
+#	sed 's/~|~/,/g' ./data/interim/FACTPCRARRESTWITNESS.txt > ./data/csv/FACTPCRARRESTWITNESS.csv
 
-./data/csv/FACTPCRARRESTROSC.csv: $(unzipped_csvs)
-	sed 's/~|~/,/g' ./data/interim/FACTPCRARRESTROSC.txt > ./data/csv/FACTPCRARRESTROSC.csv
+#./data/csv/FACTPCRARRESTROSC.csv: $(unzipped_csvs)
+#	sed 's/~|~/,/g' ./data/interim/FACTPCRARRESTROSC.txt > ./data/csv/FACTPCRARRESTROSC.csv
 
-./data/csv/FACTPCRARRESTRESUSCITATION.csv: $(unzipped_csvs)
-	sed 's/~|~/,/g' ./data/interim/FACTPCRARRESTRESUSCITATION.txt > ./data/csv/FACTPCRARRESTRESUSCITATION.csv
+#./data/csv/FACTPCRARRESTRESUSCITATION.csv: $(unzipped_csvs)
+#	sed 's/~|~/,/g' ./data/interim/FACTPCRARRESTRESUSCITATION.txt > ./data/csv/FACTPCRARRESTRESUSCITATION.csv
 
 $(unzipped_csvs) &: ./data/repaired/ASCII\ 2022_repaired.zip
 	unzip -jo "./data/repaired/ASCII 2022_repaired.zip" -d ./data/interim
@@ -114,7 +111,7 @@ clean:
 	find ./data/csv/ -type f -not -name '.gitignore' -delete
 	find ./data/interim/ -type f -not -name '.gitignore' -delete
 	find ./data/repaired/ -type f -not -name '.gitignore' -delete
-	rm -f data/NEMSIS.db
+	rm -f data/NEMSIS_PUB.db
 	rm -f figs/*
 	rm -f reports/col_locations/cols_of_interest.txt 
 	rm -f reports/chi-square.txt

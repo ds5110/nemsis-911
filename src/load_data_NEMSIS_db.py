@@ -6,15 +6,15 @@ from constants import paths
 conn = sqlite3.connect(paths.db_path)
 cursor = conn.cursor()
 
-def create_and_load_table(file_path, column_names_str):
+def load_table(file_path, column_names_str):
     try:
         table_name = os.path.splitext(os.path.basename(file_path))[0]
         column_names = [col.strip("'") for col in column_names_str.split("'~|~'")]
         primary_key = 'PcrMedicationKey' if table_name == 'FACTPCRMEDICATION' else 'PcrKey'
-        create_table_sql = f""" CREATE TABLE IF NOT EXISTS {table_name} (
-                                {", ".join([f"{col} TEXT" for col in column_names])},
-                                PRIMARY KEY ({primary_key}))"""
-        cursor.execute(create_table_sql)
+        #create_table_sql = f""" CREATE TABLE IF NOT EXISTS {table_name} (
+        #                        {", ".join([f"{col} TEXT" for col in column_names])},
+        #                        PRIMARY KEY ({primary_key}))"""
+        #cursor.execute(create_table_sql)
         with open(file_path, 'r', encoding='utf-8') as file:
             next(file, None)
             for line in file:
@@ -35,12 +35,9 @@ def create_and_load_table(file_path, column_names_str):
 
 
 def main():
-
-    
-
     for file_name, column_names in file_map.file_column_mapping.items():
         file_path = os.path.join(paths.interim_path, file_name)
-        create_and_load_table(file_path, column_names)
+        load_table(file_path, column_names)
 
 if __name__ == "__main__":
     main()
