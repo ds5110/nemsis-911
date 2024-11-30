@@ -116,7 +116,7 @@ Links for our EDA can be found below:
 - [Preliminary EDA on the Data Available](./markdown/preliminary_eda.md): includes the shape of the dataset, datatypes of each column, number of nulls in each column, and information from NEMSIS' data dictionary about what each column represents. 
 - [Additional EDA with Charts](./markdown/EDA.md)
 
-For information about our proposed project, see [Proposed Project Information](./project.md).
+For information about our proposed project, see [Proposed Project Information](./markdown/project.md).
 
 ## Additional Resources
 - [Aaron Fihn's Readme](./markdown/Aaron-Fihn_README.md) - *for reference to Aaron's project*
