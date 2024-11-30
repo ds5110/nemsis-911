@@ -59,6 +59,7 @@ Utilities:
 │   ├── col_locations          <- Stores the table names of desired columns searched for by src/nemsis_find_cols.py
 │   ├── query_results          <- Stores the top few rows output by ad hoc queries run with src/query.py
 │   ├── text_file_headers      <- Stores the top 10 rows of each text file in the NEMSIS data, for a quick view at what each file looks like. 
+│   ├── viz                    <- Stores visualizations for our project presentation.
 │   ├── epinephrine_usage.txt  <- Stores some summary statistics of the filtered data, specifically evaluating the % of cases with epinephrine administered.
 │   └── preliminary_eda.txt    <- Stores summary data of each column in the prepared dataset, including # of nulls, unique values, etc.
 │
