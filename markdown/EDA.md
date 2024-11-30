@@ -28,7 +28,7 @@ Next, we wanted to get a sense for the age distribution of patients with cardiac
 </tr>
 </table>
 
-We can see that the patient age distribution is negatively skewed - which makes sense because we'd expect more patients experiencing cardiac events to be older, with fewer children experiencing cardiac events.
+We can see that the patient age distribution is negatively skewed - which makes sense because we'd expect more patients experiencing cardiac events to be older, with fewer young adults experiencing cardiac events.
 
 ## Distribution of Age by Urbanicity
 
