@@ -14,7 +14,7 @@ computer with 32 GB of RAM; less RAM may work, but is not advised as some analys
 may exceed 16 GB of RAM.
 
 Discovery may also be used to leverage cloud computing if personal computers do not meet the requirements 
-- [Discovery Access and Setup Instructions](./markdown/DiscoveryRC,md)
+- [Discovery Access and Setup Instructions](./markdown/DiscoveryRC.md)
 
 Utilities:
 * [make](https://www.gnu.org/software/make/) installed, along with other GNU utilities. *(Windows may require WSL)*
