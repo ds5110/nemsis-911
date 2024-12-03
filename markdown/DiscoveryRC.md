@@ -32,5 +32,3 @@ This guide is intended to assist subsequent students working on the NEMSIS 911 p
 ## Additional Notes
 
 - For additional help regarding setup or usage of the platform, consult the Discovery Cluster's training page: https://rc.northeastern.edu/support/training/
-
-Please update this document with relevant screenshots to further assist future students.
