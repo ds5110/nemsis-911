@@ -1,68 +1,78 @@
-Table: events_renamed.pickle
+Table: selected_events.pickle
 	Number of Rows: 95735
-	Number of Columns: 13
+	Number of Columns: 15
 
 **Column at Index 0: 'PcrKey'**
  - Datatype: object
  - Number of Null Values: 0  |  Percent Null: 0.0%
  - Number of Unique Values: 95735
 
-**Column at Index 1: 'eScene_01'**
+**Column at Index 1: 'eArrest_01'**
  - Datatype: object
  - Number of Null Values: 0  |  Percent Null: 0.0%
  - Number of Unique Values: 2
 
-**Column at Index 2: 'eArrest_03'**
+**Column at Index 2: 'eArrest_02'**
+ - Datatype: object
+ - Number of Null Values: 0  |  Percent Null: 0.0%
+ - Number of Unique Values: 1
+
+**Column at Index 3: 'eScene_01'**
+ - Datatype: object
+ - Number of Null Values: 0  |  Percent Null: 0.0%
+ - Number of Unique Values: 2
+
+**Column at Index 4: 'eArrest_03'**
  - Datatype: object
  - Number of Null Values: 0  |  Percent Null: 0.0%
  - Number of Unique Values: 3
 
-**Column at Index 3: 'ePatient_13'**
+**Column at Index 5: 'ePatient_13'**
  - Datatype: object
  - Number of Null Values: 0  |  Percent Null: 0.0%
  - Number of Unique Values: 4
 
-**Column at Index 4: 'eResponse_05'**
+**Column at Index 6: 'eResponse_05'**
  - Datatype: object
  - Number of Null Values: 0  |  Percent Null: 0.0%
  - Number of Unique Values: 3
 
-**Column at Index 5: 'eDisposition_12'**
+**Column at Index 7: 'eDisposition_12'**
  - Datatype: object
  - Number of Null Values: 0  |  Percent Null: 0.0%
  - Number of Unique Values: 8
 
-**Column at Index 6: 'Urbanicity'**
+**Column at Index 8: 'Urbanicity'**
  - Datatype: object
  - Number of Null Values: 0  |  Percent Null: 0.0%
  - Number of Unique Values: 4
 
-**Column at Index 7: 'ageinyear'**
+**Column at Index 9: 'ageinyear'**
  - Datatype: int64
  - Number of Null Values: 0  |  Percent Null: 0.0%
  - Number of Unique Values: 94
 
-**Column at Index 8: 'EpinephrineAdministered'**
+**Column at Index 10: 'EpinephrineAdministered'**
  - Datatype: int64
  - Number of Null Values: 0  |  Percent Null: 0.0%
  - Number of Unique Values: 2
 
-**Column at Index 9: 'TotalDosesEpinephrine'**
+**Column at Index 11: 'TotalDosesEpinephrine'**
  - Datatype: int64
  - Number of Null Values: 0  |  Percent Null: 0.0%
  - Number of Unique Values: 23
 
-**Column at Index 10: 'EMSDispatchCenterTimeSec'**
+**Column at Index 12: 'EMSDispatchCenterTimeSec'**
  - Datatype: float64
  - Number of Null Values: 0  |  Percent Null: 0.0%
  - Number of Unique Values: 1334
 
-**Column at Index 11: 'EMSSystemResponseTimeMin'**
+**Column at Index 13: 'EMSSystemResponseTimeMin'**
  - Datatype: float64
  - Number of Null Values: 0  |  Percent Null: 0.0%
  - Number of Unique Values: 1990
 
-**Column at Index 12: 'TotalResponseTime'**
+**Column at Index 14: 'TotalResponseTime'**
  - Datatype: float64
  - Number of Null Values: 0  |  Percent Null: 0.0%
  - Number of Unique Values: 9672

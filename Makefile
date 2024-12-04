@@ -63,6 +63,17 @@ find_cols: col_headers
 col_headers: ./data/repaired/ASCII\ 2022_repaired.zip
 	python ./src/nemsis_text_format.py
 
+text_files: $(unzipped_csvs)
+
+setup_database: $(unzipped_csvs)
+	python ./src/create_NEMSIS_db.py
+	python ./src/load_data_NEMSIS_db.py
+
+select_events: ./data/NEMSIS_PUB.db
+	python ./src/filter_primary_NEMSIS_cases.py
+
+
+
 $(unzipped_csvs) &: ./data/repaired/ASCII\ 2022_repaired.zip
 	unzip -jo "./data/repaired/ASCII 2022_repaired.zip" -d ./data/interim
 	touch -c ./data/interim/*

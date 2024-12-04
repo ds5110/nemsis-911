@@ -25,7 +25,15 @@ Utilities:
 1) **make environment** - to create a conda environment named `project-duggani` with the required dependencies, from `environment.yml`.
 1) **conda activate project-duggani** to activate the conda environment.
 1) Drop the zipped NEMSIS dataset into `data/raw/`.
-1) **make** - running the `make` command will process all data from the ZIP file into txt files, create an sqlite database, filter a prepared dataset using the filters defined in `constants`, and then run EDA & epinephrine analysis files. 
+1) **make text_files** - to clean the ZIP file, and unpack all text files into `data/interim`.
+1) **make setup_database** - to create the `data/NEMSIS_PUB.db` and populate it with data by running `create_NEMSIS_db.py` and `load_data_NEMSIS_db.py`
+1) **make select_events** - to query the database and create the `data/processed/selected_events.pickle` file by applying the filters in `src/constants` to the NEMSIS data.
+1) **make ./reports/preliminary_eda.txt** - to run text EDA on the columns in `data/processed/selected_events.pickle` 
+1) **make eda_charts** - to run visual EDA and generate some plots.
+1) **make calculate_epinephrine_usage** - to run another script, calculating some figures around epinephrine usage (an example of trying to replicate a part of the Peters et al. paper).
+
+**Or, alternatively...**
+1) **make** - running the `make` command will run the whole pipeline from start to finish: processing all data from the ZIP file into txt files, creating an sqlite database, filtering a prepared dataset using the filters defined in `constants`, and then running EDA & epinephrine analysis files. 
 
 **Optional Makefile Commands**
 * **make query** may be used to run the `src/query.py` file, which saves the top few results of a database query into the `reports/query_results` directory. *Note: change the query text and parameters within the python file for subsequent queries*. For more information on how this works, see [here](./markdown/Query_Exploration.md)

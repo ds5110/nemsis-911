@@ -13,6 +13,11 @@ down to the relevant cardiac arrest events.
 
 See constants/filter_criteria.py for the selected codes for each feature. 
     Note: medications are first aggregated using common table expressions, as there may be multiple medications per PCR
+
+Additional Note: not all columns for every feature code are included in the
+                query, to add them, simply add them to the main select 
+                statement, you may need to join in additional tables if
+                looking for fields we didn't initially review.
 """
 def main():
 
@@ -84,6 +89,8 @@ def main():
 
     select 
     pcr.PcrKey
+    , pcr.eArrest_01
+    , pcr.eArrest_02
     , pcr.eScene_01
     , resus.eArrest_03
     , pcr.ePatient_13
