@@ -110,7 +110,7 @@ Some of these features involve multiple NEMSIS fields, within which judgement ca
 Documentation for these decisions was not present at the time we undertook this project, so we decided to develop a new framework for filtering and documenting what
 criteria and features are used to select the relevant cardiac arrest cases. Our framework includes:
 * A `constants` module within the `src` code directory, that outlines which fields were used to filter on, and what relevant codes for each field were included / excluded.
-* A feature tracking spreadsheet **LINK TO BENS SPREADSHEET HERE**, with organizes the required features, what codes are needed for each, the confirmation status, and other details about how features are selected and confirmed to be accurate. 
+* A [feature tracking spreadsheet](https://docs.google.com/spreadsheets/d/1itRIrm4ZgBMZ5gT9QAdrT_sQoTpwuaHUNwGkFqIrJ78/edit?usp=sharing), with organizes the required features, what codes are needed for each, the confirmation status, and other details about how features are selected and confirmed to be accurate. *Note: if any problems accessing the features spreadsheet persist, reach out to Ben Darby for access. darby.b@northeastern.edu*
 
 Being methodical about selecting these features and implementing the filters is required, because the inclusion or exclusion of certain codes may add or remove thousands of PCRs, which can 
 have a large impact on the results of any analysis. Our methodology resulted in a relevant case count of 95,000 PCRs. For the starting features and filters our group implemented:
