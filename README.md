@@ -91,6 +91,34 @@ Utilities:
     
 ```
 
+## Approach to Reproducibility - Filtering / Selecting Relevant Cardiac Arrest Cases
+One of the challenges of working with this data set is selecting the relevant cardiac arrest cases for analysis. The NEMSIS data itself has > 51 million 
+Patient Care Reports (PCRs), of which only a fraction are for cardiac arrest events. In their study of 2018 data, [Peters et al.](https://doi.org/10.1080/10903127.2021.2018076) filtered the data down to
+approximately 65,000 records. NEMSIS's case definition of a cardiac arrest event includes the data fields (`eArrest_01`, `eArrest_02`, and various `eSituation` fields).
+Within these fields, different codes must be used to appropriately select a cardiac arrest case. 
+
+Furthermore, additional data fields, and/or combined features must be filtered for accurate analysis. Some of the criteria Peters et al. filtered the data on included:
+* Pediatric patients < 18 years of age were excluded.
+* Cases which were not a 911 scene response were excluded.
+* Cases in which more than one EMS unit responded were excluded.
+* Cases in which the unit did not transport or attempt resuscitation were excluded.
+* Cases from other causes of traumatic injury besides a cardiac event were excluded.
+* Cases with abnormal response time (> 60 minutes from initial dispatch to arrival on scene) were excluded.
+* Cases with missing data required for the above decisions were also excluded.
+
+Some of these features involve multiple NEMSIS fields, within which judgement calls have to be made about what codes for each field should be included or excluded. 
+Documentation for these decisions was not present at the time we undertook this project, so we decided to develop a new framework for filtering and documenting what
+criteria and features are used to select the relevant cardiac arrest cases. Our framework includes:
+* A `constants` module within the `src` code directory, that outlines which fields were used to filter on, and what relevant codes for each field were included / excluded.
+* A feature tracking spreadsheet **LINK TO BENS SPREADSHEET HERE**, with organizes the required features, what codes are needed for each, the confirmation status, and other details about how features are selected and confirmed to be accurate. 
+
+Being methodical about selecting these features and implementing the filters is required, because the inclusion or exclusion of certain codes may add or remove thousands of PCRs, which can 
+have a large impact on the results of any analysis. For the starting features and filters our group implemented:
+* We adapted the same filters described by Peters et al. above.
+* Additionally, we did not explore the imputation of null values. Rows that were missing data for features used to filter the data were excluded, rather than introducing a bias through unclear imputation. A question for further study is if imputing values should be done for any of the feature(s) defined.
+
+See `src/constants/filter_criteria.py` for full documentation of how our filters were implemented. These feed into `src/filter_primary_NEMSIS_cases.py`, which produces a pickle file that can be easily read to a pandas dataframe: `data/processed/selected_events.pickle`. This pickle file is meant to store the relevant cardiac arrest cases for future analysis. Once additional features are confirmed, or if filters need to be changed, they may be updated in the constants module, and **make reselect_events** can be run to re-query the database and rebuild the `selected_events.pickle`, with the updated features & filter criteria applied.
+
 ## Review of Epinephrine Administered
 After filtering down to the relevant PCR cases (see `constants/filter_criteria.py`), we calculated some figures from a table in the paper by Peters et al. 
 Some of these figures are close percentage wise to the paper's published numbers. However, because the filter criteria described by the paper was vague, 
