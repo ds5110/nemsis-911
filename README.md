@@ -38,7 +38,7 @@ Utilities:
 **Optional Makefile Commands**
 * **make query** may be used to run the `src/query.py` file, which saves the top few results of a database query into the `reports/query_results` directory. *Note: change the query text and parameters within the python file for subsequent queries*. For more information on how this works, see [here](./markdown/Query_Exploration.md)
 * **make clean** will remove all data text files, the NEMSIS_PUB.db object, and the generated items in `figs` and `reports` directories
-* **make rebuild_database** will remove the NEMSIS_PUB.db file, and rebuild the database. This option exists in case you update the constant files, and want to rebuild the databse without unpacking the text files again.
+* **make rebuild_database** will remove the NEMSIS_PUB.db file, and rebuild the database. This option exists in case you update the constant files, and want to rebuild the database without unpacking the text files again.
 * **make reselect_events** will re-run the query in `src/filter_primary_NEMSIS_cases.py`, and update the `data/processed/selected_events.pickle`, for when the filter criteria in constants are updated and the data needs to be refreshed.
 
 ## Project Layout
