@@ -113,7 +113,7 @@ criteria and features are used to select the relevant cardiac arrest cases. Our 
 * A feature tracking spreadsheet **LINK TO BENS SPREADSHEET HERE**, with organizes the required features, what codes are needed for each, the confirmation status, and other details about how features are selected and confirmed to be accurate. 
 
 Being methodical about selecting these features and implementing the filters is required, because the inclusion or exclusion of certain codes may add or remove thousands of PCRs, which can 
-have a large impact on the results of any analysis. For the starting features and filters our group implemented:
+have a large impact on the results of any analysis. Our methodology resulted in a relevant case count of 95,000 PCRs. For the starting features and filters our group implemented:
 * We adapted the same filters described by Peters et al. above.
 * Additionally, we did not explore the imputation of null values. Rows that were missing data for features used to filter the data were excluded, rather than introducing a bias through unclear imputation. A question for further study is if imputing values should be done for any of the feature(s) defined.
 
