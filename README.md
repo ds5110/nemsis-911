@@ -159,10 +159,12 @@ For information about our proposed project, see [Proposed Project Information](.
 - [Aaron Fihn's Readme](./markdown/Aaron-Fihn_README.md) - *for reference to Aaron's project*
 - [Aaron Fihn's Makefile Information](./markdown/Aaron-Fihn_Makefile_overview.md) - *note: this project's Makefile was adapted from Aaron Fihn's, so not all steps apply, but it is a good reference for seeing how he dealt with the data challenges.*
 - [Current Makefile Information](./markdown/Current_Makefile_overview.md) - this will outline the steps of our current Makefile, showing where we modified Aaron's approach
+- The Features Definiton Spreadsheet - A Paper Explaining Purpose and Structure of the Workflow Spreadsheet We created to Improve reproducibility of Past and Current Findings.  Download the PDF from the Reports Directory
 - [Project Proposal](./markdown/Proposal.md)
 - [Project Plan](./markdown/Plan.md)
 - [Project Story](./markdown/project.md)
 - [Preliminary EDA](./markdown/preliminary_eda.md) - *includes information about the columns in the filtered dataset*
+- The Reproducibility Roadblock - A Paper Explaining The Recproducibility Issues Present in This Project.  Download the PDF from the Reports Directory
 - [Visual EDA](./markdown/EDA.md) - *includes some visualizations of patient age and urbanicity in the filtered dataset*
 - [Query Exploration](./markdown/Query_Exploration.md) - *shows some questions that were answered while querying the NEMSIS_PUB.db*
 
