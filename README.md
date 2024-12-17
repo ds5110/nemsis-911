@@ -1,4 +1,12 @@
-### Project Repo for Duggan, Jordan, & Darby
+### NEMSIS 911 - A Framework for Reproducibility
+
+**Stakeholders:** 
+ * [Teresa May, DO](https://www.mainehealth.org/providers/teresa-l-may-do) -- Internal Medicine, Critical Care, Pulmonary Disease, Neurocritical Care, Maine Health
+ * [Christine Lary, PhD](https://roux.northeastern.edu/people/christine-lary/) -- Research Associate Professor, The Roux Institute
+ * [Qingchu Jin, PhD](https://roux.northeastern.edu/people/qingchu-jin/) -- Research Scientist, The Roux Institute
+
+**Team Members:**
+ * Benjamin Darby, Ian Duggan, Tristan Jordan -- Grad. Students, The Roux Institute
 
 ## System & Directory Requirements
 Request a copy of the NEMSIS Public-Release Research Dataset for 2022 from NEMSIS in ASCII (pipe-delimited) format. You
@@ -169,6 +177,8 @@ For information about our proposed project, see [Proposed Project Information](.
 - [Query Exploration](./markdown/Query_Exploration.md) - *shows some questions that were answered while querying the NEMSIS_PUB.db*
 
 ## References
+
+* Cash, R. (2024, November 22). *Re: Inquiry About Your Paper: Differences in Out-of-Hospital Cardiac Arrest Management and Outcomes across Urban, Suburban, and Rural Settings*. [Email Q&A with Qingchu Jin]. 
 
 * Fihn, A. (Accessed 2024, October 1). *project-aaronfihn*. [GitHub Repository]. *Northeastern University*. https://github.com/ds5500/project-aaronfihn
 
